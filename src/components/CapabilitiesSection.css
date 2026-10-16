@@ -1,0 +1,110 @@
+.capabilities-section {
+  position: relative;
+}
+
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.capability-card {
+  background-color: var(--pure-white);
+  border: 1px solid var(--soft-border);
+  border-radius: var(--radius-xl);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(10, 35, 81, 0.04);
+  transition: all var(--transition-smooth);
+}
+
+.capability-card:hover {
+  border-color: var(--electric-blue);
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-4px);
+}
+
+.capability-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background-color: var(--soft-background);
+  border: 1px solid var(--soft-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  transition: all var(--transition-fast);
+}
+
+.capability-card:hover .capability-icon-wrap {
+  background-color: var(--pure-white);
+  border-color: var(--electric-blue);
+  box-shadow: 0 4px 12px rgba(11, 143, 221, 0.15);
+}
+
+.capability-title {
+  font-size: 1.05rem;
+  color: var(--deep-navy);
+  margin-bottom: 8px;
+}
+
+.capability-desc {
+  font-size: 0.86rem;
+  color: var(--slate-text);
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+
+.capability-features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+  margin-top: auto;
+}
+
+.capability-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--deep-navy);
+  line-height: 1.4;
+}
+
+.capability-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--electric-blue);
+  padding-top: 14px;
+  border-top: 1px solid var(--soft-border);
+  transition: all var(--transition-fast);
+}
+
+.capability-link:hover {
+  color: var(--deep-navy);
+  gap: 10px;
+}
+
+.capabilities-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 992px) {
+  .capabilities-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+}

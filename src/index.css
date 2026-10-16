@@ -1,0 +1,318 @@
+/* ==========================================================================
+   SARVIKA™ DESIGN SYSTEM
+   Strict 6-Color Palette:
+   --deep-navy:       #0A2351 (Headings, navbar, primary text)
+   --electric-blue:   #0B8FDD (Primary buttons, links, active states)
+   --soft-background: #F7F9FC (Page backgrounds and sections)
+   --pure-white:      #FFFFFF (Cards, navbar, content surfaces)
+   --slate-text:      #475569 (Paragraphs and supporting text)
+   --soft-border:     #DCE4F0 (Card borders and dividers)
+   ========================================================================== */
+
+:root {
+  --deep-navy: #0A2351;
+  --electric-blue: #0B8FDD;
+  --soft-background: #F7F9FC;
+  --pure-white: #FFFFFF;
+  --slate-text: #475569;
+  --soft-border: #DCE4F0;
+
+  /* Transparent derivatives strictly from approved palette */
+  --blue-glow: rgba(11, 143, 221, 0.18);
+  --blue-subtle: rgba(11, 143, 221, 0.08);
+  --navy-shadow: rgba(10, 35, 81, 0.05);
+  --navy-shadow-lg: rgba(10, 35, 81, 0.12);
+  --card-shadow: 0 10px 30px -5px rgba(10, 35, 81, 0.06), 0 4px 12px -2px rgba(10, 35, 81, 0.04);
+  --card-shadow-hover: 0 20px 40px -8px rgba(11, 143, 221, 0.16), 0 8px 16px -4px rgba(10, 35, 81, 0.06);
+
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --transition-fast: 0.18s ease;
+  --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 25px;
+  --radius-full: 9999px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 15px;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (max-width: 1024px) {
+  html {
+    font-size: 14.5px;
+  }
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--soft-background);
+  color: var(--slate-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography — Scaled and Optimized for Responsive Viewing */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--deep-navy);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(1.65rem, 3.2vw, 2.35rem); }
+h2 { font-size: clamp(1.35rem, 2.4vw, 1.85rem); }
+h3 { font-size: clamp(1.05rem, 1.6vw, 1.3rem); }
+h4 { font-size: 0.98rem; }
+
+p {
+  color: var(--slate-text);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--electric-blue);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--deep-navy);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Signature SARVIKA Floating Island Section */
+.sarvika-section-card {
+  margin: 16px 36px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--soft-border);
+  box-shadow: 0 10px 30px rgba(10, 35, 81, 0.04);
+  position: relative;
+  overflow: hidden;
+  padding: 38px 0;
+}
+
+.sarvika-bg-white {
+  background-color: var(--pure-white);
+}
+
+.sarvika-bg-soft {
+  background-color: var(--soft-background);
+}
+
+.sarvika-bg-navy {
+  background-color: var(--deep-navy);
+  border-color: var(--deep-navy);
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  background-color: var(--pure-white);
+  border: 1px solid var(--soft-border);
+  border-radius: var(--radius-full);
+  color: var(--deep-navy);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px var(--navy-shadow);
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--electric-blue);
+  box-shadow: 0 0 8px var(--electric-blue);
+}
+
+.section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 28px auto;
+}
+
+.section-title {
+  margin-bottom: 8px;
+  color: var(--deep-navy);
+}
+
+.section-title-highlight {
+  color: var(--electric-blue);
+  position: relative;
+  display: inline-block;
+}
+
+.section-description {
+  font-size: 0.92rem;
+  color: var(--slate-text);
+  line-height: 1.6;
+}
+
+/* Common Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--electric-blue);
+  color: var(--pure-white);
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 600;
+  border: 1px solid var(--electric-blue);
+  box-shadow: 0 4px 14px rgba(11, 143, 221, 0.32);
+  transition: all var(--transition-smooth);
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--deep-navy);
+  border-color: var(--deep-navy);
+  color: var(--pure-white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(10, 35, 81, 0.25);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--pure-white);
+  color: var(--deep-navy);
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 600;
+  border: 1px solid var(--soft-border);
+  box-shadow: 0 2px 6px var(--navy-shadow);
+  transition: all var(--transition-smooth);
+  cursor: pointer;
+}
+
+.btn-ghost:hover {
+  background-color: var(--soft-background);
+  border-color: var(--electric-blue);
+  color: var(--electric-blue);
+  transform: translateY(-2px);
+}
+
+.btn-ghost:active {
+
+  transform: translateY(0);
+}
+
+/* Background Subtle Patterns (only using approved colors) */
+.grid-pattern-bg {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, var(--soft-border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--soft-border) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.45;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+}
+
+/* Responsive Floating Section Margins */
+@media (max-width: 1024px) {
+  .sarvika-section-card {
+    margin: 14px 20px;
+    border-radius: 20px;
+    padding: 30px 0;
+  }
+
+  .section-header {
+    margin: 0 auto 22px auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .sarvika-section-card {
+    margin: 10px 10px;
+    border-radius: 16px;
+    padding: 22px 0;
+  }
+
+  .section-header {
+    margin: 0 auto 16px auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .sarvika-section-card {
+    margin: 8px 6px;
+    border-radius: 14px;
+    padding: 16px 0;
+  }
+}
+
+/* Accessibility */
+:focus-visible {
+  outline: 2px solid var(--electric-blue);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
