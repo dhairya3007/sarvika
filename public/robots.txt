@@ -1,0 +1,8 @@
+# ==============================================================================
+# SARVIKA™ Search Engine Robots Configuration
+# ==============================================================================
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://sarvika.co.uk/sitemap.xml
