@@ -13,7 +13,7 @@ const FAQS = [
   },
   {
     q: 'What features does SARVIKA include?',
-    a: 'Application management, document management, task management, calendar, digital signatures, internal communication, billing, reporting and more.',
+    a: 'Visa Application management, document management, task management, calendar, digital signatures, internal communication, billing, reporting and more.',
   },
   {
     q: 'Do you provide training and support?',
@@ -29,7 +29,7 @@ const FAQS = [
   },
   {
     q: 'How does pricing work?',
-    a: 'SARVIKA is available on 12-month and 24-month plans. Installation and training are one-time charges. Server costs are paid by the client.',
+    a: 'SARVIKA is available on 12-month and 24-month contract plans. Installation and training are one-time charges.',
   },
   {
     q: 'Can SARVIKA grow with my practice?',

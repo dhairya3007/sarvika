@@ -19,8 +19,8 @@ export default function AboutSection() {
             </h2>
 
             <p className="about-lead">
-              SARVIKA™ is an all-in-one practice management platform built exclusively for immigration and 
-              legal professionals. We help you streamline operations, improve team collaboration, elevate 
+              SARVIKA™ is an all-in-one practice management platform built exclusively for immigration and
+              legal professionals. We help you streamline operations, improve team collaboration, elevate
               client experiences and grow your practice with confidence.
             </p>
 
@@ -32,7 +32,7 @@ export default function AboutSection() {
                 <div className="about-feature-text">
                   <h4>Built for Immigration Professionals</h4>
                   <p>
-                    Every feature in SARVIKA is designed around the real-world needs of immigration practices — 
+                    Every feature in SARVIKA is designed around the real-world needs of immigration practices —
                     from case management to client communication.
                   </p>
                 </div>
@@ -45,7 +45,7 @@ export default function AboutSection() {
                 <div className="about-feature-text">
                   <h4>Secure. Compliant. Reliable.</h4>
                   <p>
-                    Enterprise-grade security, server-side permissions and audit controls ensure your data and 
+                    Enterprise-grade security, server-side permissions and audit controls ensure your data and
                     your clients' information are always protected.
                   </p>
                 </div>
@@ -77,18 +77,6 @@ export default function AboutSection() {
                   <span className="ring-satellite sat-2" />
                 </div>
               </div>
-
-              {/* Floating Highlight Chips */}
-              <div className="about-float-chip chip-top" aria-hidden="true">
-                <IconCheckCircle size={15} color="var(--electric-blue)" />
-                <span>OISC &amp; SRA Ready</span>
-              </div>
-
-              <div className="about-float-chip chip-bottom" aria-hidden="true">
-                <IconShield size={15} color="var(--electric-blue)" />
-                <span>UK Cloud Encrypted</span>
-              </div>
-
               {/* Core Badge with Radar Pulse */}
               <div className="about-core-badge">
                 <div className="about-shield-icon-wrap">
@@ -96,7 +84,7 @@ export default function AboutSection() {
                   <IconShield size={38} color="var(--electric-blue)" />
                 </div>
                 <span className="about-core-title">IMMIGRATION PRACTICE INTELLIGENCE</span>
-                <span className="about-core-sub">Designed for UK Law Firms &amp; Specialists</span>
+                <span className="about-core-sub"> Specialists</span>
               </div>
             </div>
           </div>

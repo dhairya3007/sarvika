@@ -45,9 +45,6 @@
   flex-shrink: 0;
 }
 
-.navbar-active-section-chip {
-  display: none;
-}
 
 .navbar-logo-img {
   height: 32px;
@@ -152,9 +149,10 @@
   position: fixed;
   inset: 0;
   z-index: 99998;
-  background-color: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background-color: rgba(3, 14, 33, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: opacity 0.3s ease;
 }
 
 .navbar-mobile-drawer {
@@ -173,7 +171,7 @@
   flex-direction: column;
   transform: translateX(100%);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.5);
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.4);
   overflow-y: auto;
 }
 
@@ -187,11 +185,11 @@
   justify-content: space-between;
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .mobile-drawer-logo {
-  height: 24px;
+  height: 26px;
   width: auto;
   object-fit: contain;
 }
@@ -205,6 +203,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  color: #ffffff;
   transition: background-color 0.2s ease;
 }
 
@@ -255,10 +254,8 @@
   box-shadow: 0 0 8px #b8fb04;
 }
 
-.mobile-drawer-cta {
-  margin-top: auto;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+.mobile-drawer-cta-item {
+  margin-top: 10px;
 }
 
 .mobile-drawer-btn {
@@ -274,11 +271,12 @@
   font-weight: 600;
   text-decoration: none;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .mobile-drawer-btn:hover {
   background-color: #097ec4;
+  transform: translateY(-1px);
 }
 
 /* Hide drawer on large screens */
@@ -289,32 +287,33 @@
   }
 }
 
-/* ================= RESPONSIVE VIEW BREAKPOINTS (FLOATING SCROLL-RESPONSIVE NAVBAR) ================= */
+/* ================= RESPONSIVE VIEW BREAKPOINTS (CLEAN EDGE-TO-EDGE EXECUTIVE NAVBAR) ================= */
 @media (max-width: 992px) {
-  /* Detached Floating Island Navbar Header */
+  /* Pinned Professional Edge-to-Edge Mobile Header Bar with authentic #17729b */
   .navbar-header {
     position: fixed;
-    top: 14px;
+    top: 0;
     left: 0;
     right: 0;
     width: 100%;
-    padding: 0 16px;
-    background: transparent !important;
-    box-shadow: none !important;
-    pointer-events: none;
+    padding: 14px 20px;
+    background: rgba(23, 114, 155, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.16);
+    pointer-events: auto;
     z-index: 1000;
-    transition: top 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: padding 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
   }
 
-  /* Center the floating capsule nicely inside container */
   .navbar-header .container {
-    max-width: 680px;
+    max-width: 100%;
     padding: 0;
-    margin: 0 auto;
+    margin: 0;
     width: 100%;
   }
 
-  /* The Signature Floating Pill Capsule - Initial Top View (scrollY <= 20px) */
   .navbar-header .navbar-container {
     pointer-events: auto;
     width: 100%;
@@ -322,76 +321,23 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: nowrap;
-    background: rgba(23, 114, 155, 0.85);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    border-radius: 9999px;
-    padding: 8px 12px 8px 18px;
-    box-shadow: 0 10px 28px rgba(0, 15, 45, 0.22), 0 2px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.18);
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
   }
 
-  /* Dynamic Scrolled Elevated Morphing State (scrollY > 20px) */
+  /* When Scrolled on Mobile */
+  .navbar-header.navbar-scrolled {
+    padding: 10px 20px;
+    background: rgba(23, 114, 155, 0.98);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  }
+
   .navbar-header.navbar-scrolled .navbar-container {
-    background: rgba(16, 92, 126, 0.96);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-color: rgba(184, 251, 4, 0.4);
-    box-shadow: 0 14px 36px rgba(0, 15, 45, 0.38), 0 0 18px rgba(184, 251, 4, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-    padding: 6px 10px 6px 14px;
-    transform: translateY(-2px);
-  }
-
-  /* Responsive Scrollspy Active Section Chip */
-  .navbar-active-section-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background: rgba(255, 255, 255, 0.18);
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    border-radius: 9999px;
-    padding: 3px 9px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: #ffffff;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-    animation: chipFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-
-  .section-chip-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background-color: #b8fb04;
-    box-shadow: 0 0 6px #b8fb04;
-    animation: chipPulse 2s infinite ease-in-out;
-  }
-
-  @keyframes chipFadeIn {
-    from {
-      opacity: 0;
-      transform: scale(0.88) translateX(-4px);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1) translateX(0);
-    }
-  }
-
-  @keyframes chipPulse {
-    0%, 100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.5;
-      transform: scale(1.25);
-    }
+    transform: none;
+    padding: 0 !important;
   }
 
   .navbar-brand {
@@ -401,9 +347,9 @@
   }
 
   .navbar-logo-img {
-    height: 23px;
+    height: 27px;
     width: auto;
-    max-width: 125px;
+    max-width: 130px;
     object-fit: contain;
   }
 
@@ -411,47 +357,22 @@
     display: none;
   }
 
-  /* Responsive Floating Controls: Quick Demo & Hamburger */
+  /* Responsive Controls: Hamburger Icon Button Only */
   .navbar-responsive-controls {
     display: flex;
     align-items: center;
-    gap: 7px;
     flex-shrink: 0;
-  }
-
-  .nav-responsive-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    background-color: var(--electric-blue);
-    color: #FFFFFF !important;
-    font-size: 0.76rem;
-    font-weight: 700;
-    padding: 5px 12px;
-    border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    text-decoration: none;
-    box-shadow: 0 3px 10px rgba(11, 143, 221, 0.32);
-    transition: all 0.2s ease;
-    letter-spacing: 0.01em;
-    flex-shrink: 0;
-  }
-
-  .nav-responsive-cta-btn:hover {
-    background-color: #097ec4;
-    transform: translateY(-1px);
-    box-shadow: 0 5px 14px rgba(11, 143, 221, 0.45);
   }
 
   .navbar-hamburger {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
     background: rgba(255, 255, 255, 0.14);
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.24);
     color: #ffffff;
     padding: 0;
     cursor: pointer;
@@ -459,50 +380,46 @@
     flex-shrink: 0;
   }
 
-  .navbar-hamburger:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: scale(1.05);
-  }
-}
-
-@media (max-width: 440px) {
-  .nav-responsive-cta-btn {
-    display: none;
+  .navbar-hamburger:hover,
+  .navbar-hamburger:active {
+    background: rgba(255, 255, 255, 0.24);
+    border-color: rgba(255, 255, 255, 0.38);
   }
 }
 
 @media (max-width: 480px) {
   .navbar-header {
-    top: 8px;
-    padding: 0 8px;
+    padding: 12px 16px;
   }
 
-  .navbar-header .navbar-container {
-    padding: 6px 8px 6px 14px;
-  }
-
-  .navbar-header.navbar-scrolled .navbar-container {
-    padding: 5px 8px 5px 12px;
+  .navbar-header.navbar-scrolled {
+    padding: 9px 16px;
   }
 
   .navbar-logo-img {
-    height: 20px;
-    max-width: 105px;
-  }
-
-  .navbar-active-section-chip {
-    padding: 2px 7px;
-    font-size: 0.68rem;
-    gap: 4px;
+    height: 24px;
+    max-width: 115px;
   }
 
   .navbar-hamburger {
-    width: 32px;
-    height: 32px;
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar-header {
+    padding: 10px 12px;
   }
 
-  .mobile-drawer-logo {
+  .navbar-logo-img {
     height: 22px;
+    max-width: 100px;
+  }
+
+  .navbar-hamburger {
+    width: 34px;
+    height: 34px;
   }
 }

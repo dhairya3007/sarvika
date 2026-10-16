@@ -97,6 +97,27 @@
   font-weight: 500;
 }
 
+/* One time installation & training note below price tag */
+.plan-price-note {
+  margin-top: 10px;
+  margin-bottom: 2px;
+  padding: 8px 10px;
+  background-color: rgba(23, 114, 155, 0.06);
+  border-left: 3px solid #17729b;
+  border-radius: var(--radius-sm, 6px);
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: var(--deep-navy);
+}
+
+.plan-price-note p {
+  margin: 0;
+}
+
+.plan-price-note p + p {
+  margin-top: 4px;
+}
+
 .plan-users-badge {
   display: flex;
   flex-direction: column;

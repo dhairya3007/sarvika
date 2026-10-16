@@ -29,14 +29,13 @@ export default function Footer({ logoUrl = '/logosarvika.png' }) {
             </a>
             <p className="footer-desc">
               One platform for smarter collaboration, streamlined workflows and better business outcomes.
-              SARVIKA helps teams stay organised, productive and connected.
+              SARVIKA support teams stay organised, productive and connected.
             </p>
             <div className="footer-status-pills">
               <span className="status-pill">
                 <span className="status-dot" />
                 <span>SMART WORKFLOWS. BETTER RESULTS.</span>
               </span>
-              <span className="status-pill version-pill">v1.0</span>
             </div>
           </div>
 
@@ -102,21 +101,12 @@ export default function Footer({ logoUrl = '/logosarvika.png' }) {
         {/* Footer Bottom / Copyright */}
         <div className="footer-bottom-row">
           <p className="copyright-text">
-            &copy; 2026{' '}
-            <a 
-              href="https://mercuryinfotech.co.uk/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="copyright-link"
-            >
-              MERCURY INFOTECH
-            </a>
-            . ALL RIGHTS RESERVED.
+            &copy; 2026 ALL RIGHTS RESERVED.
           </p>
 
-          <button 
-            type="button" 
-            className="back-to-top-button" 
+          <button
+            type="button"
+            className="back-to-top-button"
             onClick={scrollToTop}
             aria-label="Scroll back to top"
           >

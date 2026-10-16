@@ -136,6 +136,12 @@ export default function PricingSection() {
                   <span className="plan-period">/month</span>
                 </div>
 
+                {/* One time installation & training note below price tag */}
+                <div className="plan-price-note">
+                  <p>One time Installation cost is £750, Current offer is 50% off £325 for installation.</p>
+                  <p>One time training cost for 2 hours is £350, Currently it is free.</p>
+                </div>
+
                 {/* Internal Users & Case Workers badge */}
                 <div className="plan-users-badge">
                   <div className="plan-user-item">

@@ -3,16 +3,6 @@ import { createPortal } from 'react-dom';
 import { IconMenu, IconClose } from './Icons';
 import './Navbar.css';
 
-const sectionLabels = {
-  hero: 'Home',
-  platform: 'Platform',
-  capabilities: 'Platform',
-  about: 'About',
-  pricing: 'Pricing',
-  faq: 'FAQ',
-  contact: 'Contact'
-};
-
 export default function Navbar({ logoUrl = '/logosarvika.png' }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -70,23 +60,10 @@ export default function Navbar({ logoUrl = '/logosarvika.png' }) {
       >
         <div className="container">
           <div className="navbar-container">
-            {/* Authentic SARVIKA Logo & Responsive Active Section Chip */}
-            <div className="navbar-brand-wrapper">
-              <a href="#hero" className="navbar-brand" onClick={closeMenu} aria-label="SARVIKA Home">
-                <img src={logoUrl} alt="SARVIKA" className="navbar-logo-img" />
-              </a>
-
-              {/* Responsive Scrollspy Chip (Visible on mobile/tablet past hero) */}
-              {activeSection !== 'hero' && sectionLabels[activeSection] && (
-                <span
-                  className="navbar-active-section-chip"
-                  aria-label={`Current section: ${sectionLabels[activeSection]}`}
-                >
-                  <span className="section-chip-dot" />
-                  <span className="section-chip-text">{sectionLabels[activeSection]}</span>
-                </span>
-              )}
-            </div>
+            {/* Authentic SARVIKA Logo */}
+            <a href="#hero" className="navbar-brand" onClick={closeMenu} aria-label="SARVIKA Home">
+              <img src={logoUrl} alt="SARVIKA" className="navbar-logo-img" />
+            </a>
 
             {/* Desktop Navigation Links */}
             <nav className="navbar-desktop-nav" aria-label="Main Navigation">
@@ -107,11 +84,8 @@ export default function Navbar({ logoUrl = '/logosarvika.png' }) {
               </div>
             </nav>
 
-            {/* Responsive Floating Controls: Quick Demo & Hamburger */}
+            {/* Mobile Nav Toggle Icon */}
             <div className="navbar-responsive-controls">
-              <a href="#contact" className="nav-responsive-cta-btn" onClick={closeMenu}>
-                <span>Demo</span>
-              </a>
               <button
                 type="button"
                 className="navbar-hamburger"
@@ -119,7 +93,7 @@ export default function Navbar({ logoUrl = '/logosarvika.png' }) {
                 aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
                 aria-expanded={mobileMenuOpen}
               >
-                {mobileMenuOpen ? <IconClose size={20} color="#ffffff" /> : <IconMenu size={20} color="#ffffff" />}
+                {mobileMenuOpen ? <IconClose size={22} color="#ffffff" /> : <IconMenu size={22} color="#ffffff" />}
               </button>
             </div>
           </div>
@@ -157,16 +131,15 @@ export default function Navbar({ logoUrl = '/logosarvika.png' }) {
               <li><a href="#hero" className={`mobile-nav-link ${activeSection === 'hero' ? 'active' : ''}`} onClick={closeMenu}>Home</a></li>
               <li><a href="#platform" className={`mobile-nav-link ${activeSection === 'platform' ? 'active' : ''}`} onClick={closeMenu}>Platform</a></li>
               <li><a href="#about" className={`mobile-nav-link ${activeSection === 'about' ? 'active' : ''}`} onClick={closeMenu}>About Us</a></li>
-              <li><a href="#faq" className={`mobile-nav-link ${activeSection === 'faq' ? 'active' : ''}`} onClick={closeMenu}>FAQ</a></li>
               <li><a href="#pricing" className={`mobile-nav-link ${activeSection === 'pricing' ? 'active' : ''}`} onClick={closeMenu}>Pricing</a></li>
+              <li><a href="#faq" className={`mobile-nav-link ${activeSection === 'faq' ? 'active' : ''}`} onClick={closeMenu}>FAQ</a></li>
               <li><a href="#contact" className={`mobile-nav-link ${activeSection === 'contact' ? 'active' : ''}`} onClick={closeMenu}>Contact</a></li>
+              <li className="mobile-drawer-cta-item">
+                <a href="#contact" className="mobile-drawer-btn" onClick={closeMenu}>
+                  Book a Demo
+                </a>
+              </li>
             </ul>
-
-            <div className="mobile-drawer-cta">
-              <a href="#contact" className="mobile-drawer-btn" onClick={closeMenu}>
-                Book a Demo
-              </a>
-            </div>
           </div>
         </>,
         document.body

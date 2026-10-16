@@ -81,7 +81,7 @@ export default function ContactSection() {
             </p>
 
             <p className="contact-text-sub">
-              <strong>Book a Demo today</strong> and see how SARVIKA can help your practice work smarter,
+              <strong>Book a Demo today</strong> and see how SARVIKA can support your practice work smarter,
               stay organised and deliver a better client experience.
             </p>
 
@@ -110,7 +110,7 @@ export default function ContactSection() {
                   <div className="contact-item-body">
                     <span className="contact-label">Email Address</span>
                     <a href="mailto:Info@mercuryinfotech.co.uk" className="contact-value-link">
-                      Info@mercuryinfotech.co.uk
+                      Info@sarvika.co.uk
                     </a>
                   </div>
                 </div>

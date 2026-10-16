@@ -1,11 +1,10 @@
 import React from 'react';
-import { 
-  IconFolder, 
-  IconFileText, 
-  IconUsers, 
-  IconCheckCircle, 
-  IconArrowRight, 
-  IconCalendar 
+import {
+  IconFolder,
+  IconFileText,
+  IconUsers,
+  IconCheckCircle,
+  IconCalendar
 } from './Icons';
 import './CapabilitiesSection.css';
 
@@ -20,7 +19,7 @@ const CAPABILITIES = [
       'Organise tasks, deadlines & milestones',
       'Complete visibility across your practice',
     ],
-    action: 'View Applications',
+
   },
   {
     id: 'doc-mgmt',
@@ -32,7 +31,7 @@ const CAPABILITIES = [
       'Request & collect digital signatures',
       'Version control & audit trail',
     ],
-    action: 'Manage Documents',
+
   },
   {
     id: 'team-collab',
@@ -44,7 +43,7 @@ const CAPABILITIES = [
       'Role-based access & permissions',
       'Task assignment & notifications',
     ],
-    action: 'Manage Your Team',
+
   },
 ];
 
@@ -64,7 +63,7 @@ export default function CapabilitiesSection() {
           </h2>
 
           <p className="section-description">
-            SARVIKA™ brings your cases, clients, documents, tasks and team together in one secure platform — 
+            SARVIKA™ brings your cases, clients, documents, tasks and team together in one secure platform —
             so you can work smarter and deliver better results.
           </p>
         </div>
@@ -90,11 +89,6 @@ export default function CapabilitiesSection() {
                     </li>
                   ))}
                 </ul>
-
-                <a href="#contact" className="capability-link">
-                  <span>{item.action}</span>
-                  <IconArrowRight size={16} />
-                </a>
               </article>
             );
           })}
