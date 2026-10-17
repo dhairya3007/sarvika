@@ -1,5 +1,6 @@
 import React from 'react';
-import { IconUsers, IconShield, IconCalendar, IconCheckCircle } from './Icons';
+import { IconUsers, IconShield, IconCalendar } from './Icons';
+import aboutImage from '../assets/aboutimage.jpeg';
 import './AboutSection.css';
 
 export default function AboutSection() {
@@ -64,27 +65,22 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* Right Column: Visual Shield Card with Animations */}
+          {/* Right Column: Layered Image Showcase with Geometric Brand Accents */}
           <div className="about-visual-col">
-            <div className="about-shield-card">
-              {/* Concentric Animated Radar Rings */}
-              <div className="about-rings-visual" aria-hidden="true">
-                <div className="about-concentric-ring ring-3" />
-                <div className="about-concentric-ring ring-2">
-                  <span className="ring-satellite sat-1" />
-                </div>
-                <div className="about-concentric-ring ring-1">
-                  <span className="ring-satellite sat-2" />
-                </div>
-              </div>
-              {/* Core Badge with Radar Pulse */}
-              <div className="about-core-badge">
-                <div className="about-shield-icon-wrap">
-                  <div className="about-shield-pulse" />
-                  <IconShield size={38} color="var(--electric-blue)" />
-                </div>
-                <span className="about-core-title">IMMIGRATION PRACTICE INTELLIGENCE</span>
-                <span className="about-core-sub"> Specialists</span>
+            <div className="about-image-showcase">
+              {/* Layered Decorative Brand Accents matching reference aesthetic */}
+              <div className="about-shape-accent shape-top-left" aria-hidden="true" />
+              <div className="about-shape-accent shape-bottom-right-cyan" aria-hidden="true" />
+              <div className="about-shape-accent shape-bottom-right-blue" aria-hidden="true" />
+
+              {/* Main Image Card with Soft Shade & No Borders */}
+              <div className="about-image-card">
+                <img
+                  src={aboutImage}
+                  alt="SARVIKA Immigration Practice Management Platform"
+                  className="about-image"
+                  loading="eager"
+                />
               </div>
             </div>
           </div>

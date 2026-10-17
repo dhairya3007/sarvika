@@ -256,15 +256,15 @@
   line-height: 1.4;
 }
 
-/* Phone input with smart country selector */
+/* Phone input with smart country selector and scroller */
 .phone-input-wrap {
+  position: relative;
   display: flex;
   align-items: stretch;
   background-color: var(--soft-background);
   border: 1px solid var(--soft-border);
   border-radius: var(--radius-sm);
   transition: all var(--transition-fast);
-  overflow: hidden;
 }
 
 .phone-input-wrap:focus-within {
@@ -273,31 +273,42 @@
   background-color: var(--pure-white);
 }
 
+.phone-country-picker-container {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
 .phone-country-select-wrapper {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   padding: 0 12px;
   background: rgba(10, 35, 81, 0.04);
+  border: none;
   border-right: 1px solid var(--soft-border);
+  border-top-left-radius: var(--radius-sm);
+  border-bottom-left-radius: var(--radius-sm);
   flex-shrink: 0;
   cursor: pointer;
   user-select: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  transition: background-color var(--transition-fast);
+}
+
+.phone-country-select-wrapper:hover,
+.phone-country-select-wrapper.active {
+  background: rgba(11, 143, 221, 0.1);
 }
 
 .phone-selected-flag {
-  font-size: 1.15rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
-}
-
-.phone-country-select {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
 }
 
 .phone-dial-code {
@@ -306,11 +317,201 @@
   color: var(--deep-navy);
 }
 
+.phone-dropdown-arrow {
+  display: inline-block;
+  font-size: 0.65rem;
+  color: var(--slate-text);
+  margin-left: -2px;
+  opacity: 0.8;
+  transition: transform var(--transition-fast);
+}
+
+.phone-dropdown-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+/* Country Dropdown Menu with Scroller */
+.phone-country-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 320px;
+  max-width: min(340px, calc(100vw - 32px));
+  background: var(--pure-white);
+  border: 1px solid var(--soft-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 16px 36px rgba(10, 35, 81, 0.14), 0 4px 12px rgba(10, 35, 81, 0.06);
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: countryDropdownFade 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes countryDropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.phone-country-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--soft-background);
+  border-bottom: 1px solid var(--soft-border);
+}
+
+.phone-country-search-icon {
+  color: var(--slate-text);
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.phone-country-search-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 0.85rem;
+  color: var(--deep-navy);
+  font-family: inherit;
+  outline: none;
+}
+
+.phone-country-search-input::placeholder {
+  color: var(--slate-text);
+  opacity: 0.7;
+}
+
+.phone-country-search-clear {
+  border: none;
+  background: transparent;
+  color: var(--slate-text);
+  cursor: pointer;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.phone-country-search-clear:hover {
+  background: rgba(10, 35, 81, 0.08);
+  color: var(--deep-navy);
+}
+
+/* Scroller Container */
+.phone-country-dropdown-scroller {
+  max-height: 250px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.phone-country-dropdown-scroller::-webkit-scrollbar {
+  width: 6px;
+}
+
+.phone-country-dropdown-scroller::-webkit-scrollbar-track {
+  background: rgba(10, 35, 81, 0.03);
+  border-radius: 6px;
+}
+
+.phone-country-dropdown-scroller::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 6px;
+}
+
+.phone-country-dropdown-scroller::-webkit-scrollbar-thumb:hover {
+  background: var(--electric-blue);
+}
+
+.phone-country-group-label {
+  padding: 8px 10px 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--slate-text);
+  opacity: 0.8;
+}
+
+.phone-country-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.84rem;
+  color: var(--deep-navy);
+  text-align: left;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all var(--transition-fast);
+}
+
+.phone-country-option:hover {
+  background-color: var(--blue-subtle);
+  color: var(--deep-navy);
+}
+
+.phone-country-option.selected {
+  background-color: rgba(11, 143, 221, 0.12);
+  font-weight: 600;
+}
+
+.country-opt-flag {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.country-opt-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.country-opt-code {
+  font-size: 0.8rem;
+  color: var(--slate-text);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.country-opt-check {
+  color: var(--electric-blue);
+  font-size: 0.82rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-left: 2px;
+}
+
+.phone-country-no-results {
+  padding: 24px 16px;
+  text-align: center;
+  color: var(--slate-text);
+  font-size: 0.84rem;
+}
+
 .phone-number-field {
   border: none !important;
   background: transparent !important;
   box-shadow: none !important;
   padding: 12px 14px !important;
+  border-top-right-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
   flex: 1;
 }
 

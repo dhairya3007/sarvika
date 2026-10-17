@@ -12,16 +12,16 @@
 .about-section {
   position: relative;
   background-color: var(--soft-background) !important;
-  border: 1px solid var(--soft-border);
+  border: none !important;
   box-shadow: 0 10px 30px rgba(10, 35, 81, 0.04);
   overflow: hidden;
 }
 
 .about-layout {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: 1.08fr 0.92fr;
   align-items: center;
-  gap: 52px;
+  gap: 48px;
   position: relative;
   z-index: 1;
 }
@@ -114,244 +114,125 @@
   flex-wrap: wrap;
 }
 
-/* Right Column: Visual Shield Card */
+/* Right Column: Layered Showcase with Geometric Brand Accents */
 .about-visual-col {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
-.about-shield-card {
+.about-image-showcase {
   position: relative;
   width: 100%;
-  max-width: 420px;
-  height: 400px;
-  background-color: var(--pure-white);
-  border: 1px solid var(--soft-border);
-  border-radius: var(--radius-xl);
-  box-shadow: 0 8px 30px rgba(10, 35, 81, 0.05);
+  max-width: 520px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px;
-  overflow: hidden;
-  transition: border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
-.about-shield-card:hover {
-  border-color: var(--electric-blue);
-  box-shadow: 0 16px 36px rgba(11, 143, 221, 0.12), 0 4px 12px rgba(10, 35, 81, 0.04);
-}
-
-/* Concentric Radar Rings & Orbit Animations */
-.about-rings-visual {
+/* Layered Decorative Brand Accents (Inspired by reference aesthetic) */
+.about-shape-accent {
   position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
-.about-concentric-ring {
-  position: absolute;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Outer Cyan/Teal Diamond Accent */
+.shape-bottom-right-cyan {
+  width: 135px;
+  height: 135px;
+  bottom: -18px;
+  right: -18px;
+  background: linear-gradient(135deg, #06b6d4 0%, #0B8FDD 100%);
+  transform: rotate(26deg);
+  border-radius: 30px;
+  z-index: 0;
+  opacity: 0.9;
+  box-shadow: 0 12px 28px rgba(6, 182, 212, 0.28);
 }
 
-.ring-1 {
-  width: 180px;
-  height: 180px;
-  border: 1.5px dashed var(--soft-border);
-  animation: orbitClockwise 28s linear infinite;
+/* Inner Electric Blue to Deep Navy Diamond Accent */
+.shape-bottom-right-blue {
+  width: 150px;
+  height: 150px;
+  bottom: -6px;
+  right: -6px;
+  background: linear-gradient(135deg, #0B8FDD 0%, #0A2351 100%);
+  transform: rotate(13deg);
+  border-radius: 28px;
+  z-index: 1;
+  box-shadow: 0 16px 36px rgba(11, 143, 221, 0.32);
 }
 
-.ring-2 {
-  width: 270px;
-  height: 270px;
-  border: 1.5px dashed var(--soft-border);
-  animation: orbitCounter 38s linear infinite;
+/* Subtle Top-Left Ambient Accent */
+.shape-top-left {
+  width: 90px;
+  height: 90px;
+  top: -14px;
+  left: -14px;
+  background: linear-gradient(135deg, rgba(11, 143, 221, 0.18), rgba(6, 182, 212, 0.08));
+  transform: rotate(-10deg);
+  border-radius: 20px;
+  z-index: 0;
 }
 
-.ring-3 {
-  width: 360px;
-  height: 360px;
-  border: 1px solid rgba(220, 228, 240, 0.5);
-  animation: ringPulse 6s ease-in-out infinite alternate;
-}
-
-.ring-satellite {
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: var(--electric-blue);
-  box-shadow: 0 0 8px var(--electric-blue);
-}
-
-.sat-1 {
-  top: -3.5px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.sat-2 {
-  bottom: -3.5px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-@keyframes orbitClockwise {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes orbitCounter {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
-}
-
-@keyframes ringPulse {
-  0% {
-    transform: scale(0.96);
-    opacity: 0.5;
-  }
-  100% {
-    transform: scale(1.03);
-    opacity: 0.9;
-  }
-}
-
-/* Floating Highlight Chips */
-.about-float-chip {
-  position: absolute;
-  z-index: 3;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
-  background-color: var(--pure-white);
-  border: 1px solid var(--soft-border);
-  color: var(--deep-navy);
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  box-shadow: 0 4px 14px rgba(10, 35, 81, 0.07);
-  white-space: nowrap;
-  pointer-events: none;
-}
-
-.chip-top {
-  top: 24px;
-  left: 20px;
-  animation: floatChip1 4.5s ease-in-out infinite alternate;
-}
-
-.chip-bottom {
-  bottom: 24px;
-  right: 20px;
-  animation: floatChip2 5s ease-in-out 0.8s infinite alternate;
-}
-
-@keyframes floatChip1 {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-7px); }
-}
-
-@keyframes floatChip2 {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(7px); }
-}
-
-/* Core Shield Badge */
-.about-core-badge {
+/* Main Image Card with Soft Natural Shade & No Border */
+.about-image-card {
   position: relative;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background-color: var(--soft-background);
-  border: 1px solid var(--soft-border);
-  border-radius: var(--radius-lg);
-  padding: 28px 24px;
-  box-shadow: 0 6px 20px rgba(10, 35, 81, 0.04);
-  max-width: 270px;
-  animation: coreBadgeFloat 4.5s ease-in-out infinite alternate;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-@keyframes coreBadgeFloat {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-5px); }
-}
-
-.about-shield-icon-wrap {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  width: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  border: none !important;
   background-color: var(--pure-white);
-  border: 1px solid var(--soft-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 14px rgba(10, 35, 81, 0.06);
-  margin-bottom: 14px;
+  box-shadow: 
+    0 24px 56px -12px rgba(10, 35, 81, 0.14),
+    0 8px 24px -4px rgba(10, 35, 81, 0.06);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.about-shield-pulse {
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  border: 1.5px solid var(--electric-blue);
-  animation: shieldRadar 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-  pointer-events: none;
+.about-image-showcase:hover .about-image-card {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 32px 64px -14px rgba(10, 35, 81, 0.2),
+    0 12px 28px -4px rgba(11, 143, 221, 0.16);
 }
 
-@keyframes shieldRadar {
-  0% {
-    transform: scale(0.95);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1.4);
-    opacity: 0;
-  }
+.about-image-showcase:hover .shape-bottom-right-cyan {
+  transform: rotate(32deg) scale(1.05);
 }
 
-.about-core-title {
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  color: var(--deep-navy);
-  margin-bottom: 6px;
-  line-height: 1.35;
+.about-image-showcase:hover .shape-bottom-right-blue {
+  transform: rotate(17deg) scale(1.03);
 }
 
-.about-core-sub {
-  font-size: 0.76rem;
-  color: var(--slate-text);
-  line-height: 1.45;
+.about-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1040 / 840;
+  object-fit: cover;
+  display: block;
+  border: none !important;
+  border-radius: inherit;
 }
 
 /* ================= RESPONSIVE LAYOUT BREAKPOINTS ================= */
 @media (max-width: 992px) {
   .about-layout {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 44px;
   }
 
   .about-visual-col {
     order: 2;
+    margin-top: 10px;
   }
 
-  .about-shield-card {
-    max-width: 480px;
-    height: 380px;
+  .about-image-showcase {
+    max-width: 520px;
+    margin: 0 auto;
   }
 }
 
@@ -401,78 +282,54 @@
     justify-content: center;
   }
 
-  .about-shield-card {
-    height: 330px;
-    padding: 20px;
+  .about-image-card {
+    border-radius: 16px;
+    max-width: 100%;
+  }
+
+  .shape-bottom-right-cyan {
+    width: 90px;
+    height: 90px;
+    bottom: -10px;
+    right: -10px;
+    border-radius: 20px;
+  }
+
+  .shape-bottom-right-blue {
+    width: 105px;
+    height: 105px;
+    bottom: -4px;
+    right: -4px;
     border-radius: 18px;
   }
 
-  .ring-1 {
-    width: 140px;
-    height: 140px;
-  }
-
-  .ring-2 {
-    width: 210px;
-    height: 210px;
-  }
-
-  .ring-3 {
-    width: 280px;
-    height: 280px;
-  }
-
-  .about-float-chip {
-    font-size: 0.7rem;
-    padding: 5px 10px;
-  }
-
-  .chip-top {
-    top: 14px;
-    left: 12px;
-  }
-
-  .chip-bottom {
-    bottom: 14px;
-    right: 12px;
-  }
-
-  .about-core-badge {
-    padding: 22px 16px;
-    max-width: 240px;
-  }
-
-  .about-core-title {
-    font-size: 0.72rem;
-  }
-
-  .about-core-sub {
-    font-size: 0.7rem;
+  .shape-top-left {
+    width: 65px;
+    height: 65px;
+    top: -8px;
+    left: -8px;
+    border-radius: 14px;
   }
 }
 
 @media (max-width: 480px) {
-  .about-shield-card {
-    height: 300px;
-    padding: 16px;
+  .about-image-card {
+    border-radius: 14px;
   }
 
-  .ring-3 {
+  .shape-bottom-right-cyan {
     display: none;
   }
 
-  .ring-2 {
-    width: 190px;
-    height: 190px;
+  .shape-bottom-right-blue {
+    width: 80px;
+    height: 80px;
+    bottom: -4px;
+    right: -4px;
+    border-radius: 15px;
   }
 
-  .ring-1 {
-    width: 130px;
-    height: 130px;
-  }
-
-  .about-core-badge {
-    padding: 18px 12px;
-    max-width: 220px;
+  .shape-top-left {
+    display: none;
   }
 }

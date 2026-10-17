@@ -100,9 +100,6 @@ export default function CapabilitiesSection() {
             <IconCalendar size={18} />
             <span>Book a Demo</span>
           </a>
-          <a href="#about" className="btn-ghost">
-            <span>Explore SARVIKA</span>
-          </a>
         </div>
       </div>
     </section>

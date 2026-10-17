@@ -70,7 +70,6 @@ export default function Navbar({ logoUrl = '/logosarvika.png' }) {
               <ul className="navbar-menu">
                 <li className="menu-item"><a href="#hero" className={`nav-link ${activeSection === 'hero' ? 'active' : ''}`}>Home</a></li>
                 <li className="menu-item"><a href="#platform" className={`nav-link ${activeSection === 'platform' ? 'active' : ''}`}>Platform</a></li>
-                <li className="menu-item"><a href="#about" className={`nav-link ${activeSection === 'about' ? 'active' : ''}`}>About Us</a></li>
                 <li className="menu-item"><a href="#pricing" className={`nav-link ${activeSection === 'pricing' ? 'active' : ''}`}>Pricing</a></li>
                 <li className="menu-item"><a href="#faq" className={`nav-link ${activeSection === 'faq' ? 'active' : ''}`}>FAQ</a></li>
                 <li className="menu-item"><a href="#contact" className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`}>Contact</a></li>
@@ -130,7 +129,6 @@ export default function Navbar({ logoUrl = '/logosarvika.png' }) {
             <ul className="mobile-drawer-menu">
               <li><a href="#hero" className={`mobile-nav-link ${activeSection === 'hero' ? 'active' : ''}`} onClick={closeMenu}>Home</a></li>
               <li><a href="#platform" className={`mobile-nav-link ${activeSection === 'platform' ? 'active' : ''}`} onClick={closeMenu}>Platform</a></li>
-              <li><a href="#about" className={`mobile-nav-link ${activeSection === 'about' ? 'active' : ''}`} onClick={closeMenu}>About Us</a></li>
               <li><a href="#pricing" className={`mobile-nav-link ${activeSection === 'pricing' ? 'active' : ''}`} onClick={closeMenu}>Pricing</a></li>
               <li><a href="#faq" className={`mobile-nav-link ${activeSection === 'faq' ? 'active' : ''}`} onClick={closeMenu}>FAQ</a></li>
               <li><a href="#contact" className={`mobile-nav-link ${activeSection === 'contact' ? 'active' : ''}`} onClick={closeMenu}>Contact</a></li>
