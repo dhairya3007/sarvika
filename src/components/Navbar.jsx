@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { IconMenu, IconClose } from './Icons';
 import './Navbar.css';
@@ -7,6 +7,7 @@ export default function Navbar({ logoUrl = '/logosarvika.png' }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const hamburgerRef = useRef(null);
 
   // Scroll detection to update floating navbar style on scroll (glass, elevation, accent glow)
   useEffect(() => {
@@ -50,7 +51,12 @@ export default function Navbar({ logoUrl = '/logosarvika.png' }) {
     };
   }, [mobileMenuOpen]);
 
-  const closeMenu = () => setMobileMenuOpen(false);
+  const closeMenu = () => {
+    if (document.activeElement && typeof document.activeElement.blur === 'function') {
+      document.activeElement.blur();
+    }
+    setMobileMenuOpen(false);
+  };
 
   return (
     <>
@@ -86,6 +92,7 @@ export default function Navbar({ logoUrl = '/logosarvika.png' }) {
             {/* Mobile Nav Toggle Icon */}
             <div className="navbar-responsive-controls">
               <button
+                ref={hamburgerRef}
                 type="button"
                 className="navbar-hamburger"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -112,7 +119,7 @@ export default function Navbar({ logoUrl = '/logosarvika.png' }) {
 
           <div
             className={`navbar-mobile-drawer ${mobileMenuOpen ? 'drawer-open' : ''}`}
-            aria-hidden={!mobileMenuOpen}
+            inert={!mobileMenuOpen ? '' : undefined}
           >
             <div className="mobile-drawer-header">
               <img src={logoUrl} alt="SARVIKA" className="mobile-drawer-logo" />
