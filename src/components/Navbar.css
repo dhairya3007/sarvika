@@ -130,18 +130,20 @@
 
 .navbar-hamburger {
   display: none;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 8px;
-  padding: 7px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 6px;
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  color: #ffffff;
+  transition: opacity 0.2s ease;
+  line-height: 0;
 }
 
 .navbar-hamburger:hover {
-  background: rgba(255, 255, 255, 0.25);
+  opacity: 0.82;
 }
 
 /* ================= PORTALED MOBILE DRAWER & BACKDROP ================= */
@@ -281,6 +283,7 @@
 
 /* Hide drawer on large screens */
 @media (min-width: 993px) {
+
   .navbar-mobile-backdrop,
   .navbar-mobile-drawer {
     display: none !important;
@@ -289,6 +292,7 @@
 
 /* ================= RESPONSIVE VIEW BREAKPOINTS (CLEAN EDGE-TO-EDGE EXECUTIVE NAVBAR) ================= */
 @media (max-width: 992px) {
+
   /* Pinned Professional Edge-to-Edge Mobile Header Bar with authentic #17729b */
   .navbar-header {
     position: fixed;
@@ -300,8 +304,6 @@
     background: rgba(23, 114, 155, 0.96);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.16);
     pointer-events: auto;
     z-index: 1000;
     transition: padding 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
@@ -368,22 +370,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.14);
-    border: 1px solid rgba(255, 255, 255, 0.24);
+    width: auto;
+    height: auto;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
     color: #ffffff;
-    padding: 0;
+    padding: 6px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: opacity 0.2s ease;
     flex-shrink: 0;
+    line-height: 0;
   }
 
   .navbar-hamburger:hover,
   .navbar-hamburger:active {
-    background: rgba(255, 255, 255, 0.24);
-    border-color: rgba(255, 255, 255, 0.38);
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    opacity: 0.8;
   }
 }
 
@@ -400,12 +406,6 @@
     height: 24px;
     max-width: 115px;
   }
-
-  .navbar-hamburger {
-    width: 38px;
-    height: 38px;
-    border-radius: 9px;
-  }
 }
 
 @media (max-width: 360px) {
@@ -416,10 +416,5 @@
   .navbar-logo-img {
     height: 22px;
     max-width: 100px;
-  }
-
-  .navbar-hamburger {
-    width: 34px;
-    height: 34px;
   }
 }

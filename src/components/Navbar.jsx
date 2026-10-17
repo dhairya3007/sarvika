@@ -92,7 +92,7 @@ export default function Navbar({ logoUrl = '/logosarvika.png' }) {
                 aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
                 aria-expanded={mobileMenuOpen}
               >
-                {mobileMenuOpen ? <IconClose size={22} color="#ffffff" /> : <IconMenu size={22} color="#ffffff" />}
+                {mobileMenuOpen ? <IconClose size={24} color="#ffffff" /> : <IconMenu size={24} color="#ffffff" />}
               </button>
             </div>
           </div>
