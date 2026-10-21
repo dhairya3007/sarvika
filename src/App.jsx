@@ -10,6 +10,7 @@ import FaqSection from './components/FaqSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import { initAnalytics } from './utils/analytics';
+import { COUNTRIES, detectVisitorRegion } from './utils/geo';
 
 // Default assets from workspace
 // If user provides external URLs separately, they can easily replace these or configure via props
@@ -18,9 +19,17 @@ const SARVIKA_PRELOADER_URL = '/12-beacon-pipeline (2).svg';
 
 export default function App() {
   const [preloaderFinished, setPreloaderFinished] = useState(false);
+  const [userCountry, setUserCountry] = useState(COUNTRIES[0]);
 
   useEffect(() => {
     initAnalytics();
+    detectVisitorRegion()
+      .then((detected) => {
+        if (detected) {
+          setUserCountry(detected);
+        }
+      })
+      .catch(() => {});
   }, []);
 
   return (
@@ -49,14 +58,17 @@ export default function App() {
         {/* About SARVIKA Section */}
         <AboutSection />
 
-        {/* Transparent Pricing Plans */}
-        <PricingSection />
+        {/* Transparent Pricing Plans (Connected to Auto-Detected Country) */}
+        <PricingSection userCountry={userCountry} />
 
         {/* Frequently Asked Questions */}
         <FaqSection />
 
         {/* Contact & Schedule Demo Section */}
-        <ContactSection />
+        <ContactSection 
+          selectedCountry={userCountry} 
+          onSelectCountry={setUserCountry} 
+        />
       </main>
 
       {/* Footer */}

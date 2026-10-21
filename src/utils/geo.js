@@ -184,13 +184,83 @@ export const COUNTRIES = [
 export const CORE_MARKETS_COUNT = 26;
 
 export async function detectVisitorRegion() {
-  // 1. Fast, instant detection via Browser Timezone (0ms latency, privacy-safe)
-  let detectedCode = 'GB'; // Default to primary UK immigration market
+  let detectedCode = '';
   let timeZone = '';
   let city = '';
 
   try {
     timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+  } catch (e) {
+    // Keep silent
+  }
+
+  // 1. IP Geolocation (Takes priority over local system clock — essential for VPNs, proxies & travel)
+  // Provider A: api.country.is (Fast Cloudflare edge endpoint, zero rate limits)
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2000);
+    const res = await fetch('https://api.country.is/', {
+      signal: controller.signal,
+      cache: 'no-store',
+    });
+    clearTimeout(timeoutId);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.country && data.country.length === 2) {
+        detectedCode = data.country.toUpperCase();
+      }
+    }
+  } catch (err) {
+    // Fall through to next provider
+  }
+
+  // Provider B: ipwho.is (Provides full country, region, city and timezone)
+  if (!detectedCode) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2000);
+      const res = await fetch('https://ipwho.is/', {
+        signal: controller.signal,
+        cache: 'no-store',
+      });
+      clearTimeout(timeoutId);
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.success && data.country_code) {
+          detectedCode = data.country_code.toUpperCase();
+          city = data.city || '';
+          timeZone = data.timezone?.id || timeZone;
+        }
+      }
+    } catch (err) {
+      // Fall through to next provider
+    }
+  }
+
+  // Provider C: freeipapi.com fallback
+  if (!detectedCode) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2000);
+      const res = await fetch('https://freeipapi.com/api/json', {
+        signal: controller.signal,
+        cache: 'no-store',
+      });
+      clearTimeout(timeoutId);
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.countryCode) {
+          detectedCode = data.countryCode.toUpperCase();
+          city = data.cityName || '';
+        }
+      }
+    } catch (err) {
+      // Network offline or blocked
+    }
+  }
+
+  // 2. Fallback to Browser Timezone only if all IP lookups failed (e.g. offline mode)
+  if (!detectedCode && timeZone) {
     if (timeZone.includes('Kolkata') || timeZone.includes('Calcutta') || timeZone.includes('India')) {
       detectedCode = 'IN';
     } else if (timeZone.includes('London') || timeZone.includes('Europe/Belfast') || timeZone.includes('Europe/Jersey')) {
@@ -246,26 +316,11 @@ export async function detectVisitorRegion() {
     } else if (timeZone.includes('Auckland')) {
       detectedCode = 'NZ';
     }
-  } catch (e) {
-    // Keep GB fallback
   }
 
-  // 2. Supplement with IP Geolocation lookup if network allows (1.2s timeout so page is never blocked)
-  try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 1200);
-    const res = await fetch('https://ipapi.co/json/', { signal: controller.signal });
-    clearTimeout(timeoutId);
-    if (res.ok) {
-      const data = await res.json();
-      if (data && data.country_code) {
-        detectedCode = data.country_code;
-        city = data.city || '';
-        timeZone = data.timezone || timeZone;
-      }
-    }
-  } catch (err) {
-    // Timezone fallback used seamlessly
+  // 3. Ultimate default fallback
+  if (!detectedCode) {
+    detectedCode = 'GB';
   }
 
   const matched = COUNTRIES.find((c) => c.code === detectedCode) || {

@@ -4,7 +4,7 @@ import { COUNTRIES, CORE_MARKETS_COUNT, detectVisitorRegion } from '../utils/geo
 import { trackEvent } from '../utils/analytics';
 import './ContactSection.css';
 
-export default function ContactSection() {
+export default function ContactSection({ selectedCountry: propCountry, onSelectCountry }) {
   const [formData, setFormData] = useState({
     firmName: '',
     name: '',
@@ -13,7 +13,12 @@ export default function ContactSection() {
     message: '',
   });
 
-  const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
+  const [internalCountry, setInternalCountry] = useState(COUNTRIES[0]);
+  const selectedCountry = propCountry || internalCountry;
+  const setSelectedCountry = (c) => {
+    if (onSelectCountry) onSelectCountry(c);
+    setInternalCountry(c);
+  };
   const [regionInfo, setRegionInfo] = useState({ name: 'United Kingdom', code: 'GB', city: '', timeZone: '' });
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');

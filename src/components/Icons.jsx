@@ -754,11 +754,36 @@ export const FlagUA = ({ width = 20, height = 14, className = '' }) => (
   </svg>
 );
 
+export const FlagEU = ({ width = 20, height = 14, className = '' }) => (
+  <svg width={width} height={height} viewBox="0 0 60 42" className={`flag-icon ${className}`} style={{ borderRadius: '2.5px', boxShadow: '0 1px 3px rgba(0,0,0,0.18)', flexShrink: 0 }} role="img" aria-label="European Union">
+    <clipPath id="euClip">
+      <rect width="60" height="42" rx="3" ry="3" />
+    </clipPath>
+    <g clipPath="url(#euClip)">
+      <rect width="60" height="42" fill="#003399" />
+      <circle cx="30" cy="10" r="1.5" fill="#FFCC00" />
+      <circle cx="35.5" cy="11.5" r="1.5" fill="#FFCC00" />
+      <circle cx="39.5" cy="15.5" r="1.5" fill="#FFCC00" />
+      <circle cx="41" cy="21" r="1.5" fill="#FFCC00" />
+      <circle cx="39.5" cy="26.5" r="1.5" fill="#FFCC00" />
+      <circle cx="35.5" cy="30.5" r="1.5" fill="#FFCC00" />
+      <circle cx="30" cy="32" r="1.5" fill="#FFCC00" />
+      <circle cx="24.5" cy="30.5" r="1.5" fill="#FFCC00" />
+      <circle cx="20.5" cy="26.5" r="1.5" fill="#FFCC00" />
+      <circle cx="19" cy="21" r="1.5" fill="#FFCC00" />
+      <circle cx="20.5" cy="15.5" r="1.5" fill="#FFCC00" />
+      <circle cx="24.5" cy="11.5" r="1.5" fill="#FFCC00" />
+    </g>
+  </svg>
+);
+
 export const CountryFlag = ({ code = 'GB', width = 20, height = 14, className = '' }) => {
   const c = (code || 'GB').toUpperCase();
   switch (c) {
     case 'GB':
       return <FlagUK width={width} height={height} className={className} />;
+    case 'EU':
+      return <FlagEU width={width} height={height} className={className} />;
     case 'IN':
       return <FlagIndia width={width} height={height} className={className} />;
     case 'US':
