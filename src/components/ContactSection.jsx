@@ -135,13 +135,24 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
     };
 
     try {
-      const response = await fetch('/api/send-email', {
+      let response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(payload),
       });
+
+      // Netlify function direct endpoint fallback if rewrite hasn't taken effect
+      if (response.status === 404) {
+        response = await fetch('/.netlify/functions/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+      }
 
       const result = await response.json().catch(() => ({}));
 

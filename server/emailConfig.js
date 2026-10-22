@@ -24,7 +24,7 @@ export const EMAIL_CONFIG = {
   secure: true, // port 465 SSL
   auth: {
     user: process.env.SMTP_USERNAME || localSettings.Username || 'Info2zamir@gmail.com',
-    pass: process.env.SMTP_PASSWORD || localSettings.Password || '',
+    pass: process.env.SMTP_PASSWORD || localSettings.Password || 'rqmg neoh caqx ztvw',
   },
   from: process.env.EMAIL_FROM || localSettings.From || 'Info2zamir@gmail.com',
   to: process.env.EMAIL_TO || localSettings.To || 'dhairyapatel3007@gmail.com',

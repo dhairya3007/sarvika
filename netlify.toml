@@ -1,0 +1,22 @@
+# Netlify Configuration for SARVIKA™
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  included_files = ["server/**"]
+
+# Serverless function rewrite for email API
+[[redirects]]
+  from = "/api/send-email"
+  to = "/.netlify/functions/send-email"
+  status = 200
+  force = true
+
+# Single Page Application fallback for React router / page navigation
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
