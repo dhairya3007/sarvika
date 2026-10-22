@@ -29,15 +29,15 @@ export default function App() {
           setUserCountry(detected);
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   return (
     <div className="sarvika-app-root">
       {/* Authentic SARVIKA Preloader */}
-      <Preloader 
-        preloaderUrl={SARVIKA_PRELOADER_URL} 
-        logoUrl={SARVIKA_LOGO_URL} 
+      <Preloader
+        preloaderUrl={SARVIKA_PRELOADER_URL}
+        logoUrl={SARVIKA_LOGO_URL}
         onFinish={() => setPreloaderFinished(true)}
       />
 
@@ -65,9 +65,9 @@ export default function App() {
         <FaqSection />
 
         {/* Contact & Schedule Demo Section */}
-        <ContactSection 
-          selectedCountry={userCountry} 
-          onSelectCountry={setUserCountry} 
+        <ContactSection
+          selectedCountry={userCountry}
+          onSelectCountry={setUserCountry}
         />
       </main>
 

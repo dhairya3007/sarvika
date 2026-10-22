@@ -114,7 +114,7 @@
   margin: 0;
 }
 
-.plan-price-note p + p {
+.plan-price-note p+p {
   margin-top: 4px;
 }
 
@@ -270,5 +270,3 @@
     justify-content: center;
   }
 }
-
-

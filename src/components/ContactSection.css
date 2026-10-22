@@ -212,7 +212,55 @@
   font-size: 0.95rem;
   color: var(--slate-text);
   line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.success-email-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(11, 143, 221, 0.08);
+  border: 1px solid rgba(11, 143, 221, 0.22);
+  color: var(--deep-navy);
+  font-size: 0.88rem;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  margin-bottom: 14px;
+}
+
+.success-email-badge strong {
+  color: var(--electric-blue);
+}
+
+.success-followup-text {
+  font-size: 0.86rem;
+  color: var(--slate-text);
+  line-height: 1.5;
   margin-bottom: 24px;
+}
+
+/* Submit button spinner */
+.submit-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  border-top-color: #ffffff;
+  animation: submitSpin 0.75s infinite linear;
+  margin-right: 4px;
+}
+
+@keyframes submitSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.form-submit-btn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+  transform: none !important;
 }
 
 /* Detected Region Banner */

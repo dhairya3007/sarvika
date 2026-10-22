@@ -22,6 +22,7 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
   const [regionInfo, setRegionInfo] = useState({ name: 'United Kingdom', code: 'GB', city: '', timeZone: '' });
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Country selector dropdown & scroller state
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
@@ -111,27 +112,64 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.firmName || !formData.name || !formData.phone || !formData.email) {
+    if (!formData.firmName.trim() || !formData.name.trim() || !formData.phone.trim() || !formData.email.trim()) {
       setErrorMsg('Please complete all required fields.');
       return;
     }
     setErrorMsg('');
+    setIsSubmitting(true);
 
-    // Trigger Google Analytics Lead Conversion Event for Analytics Dashboard
-    trackEvent('generate_lead', {
-      event_category: 'contact',
-      event_label: 'demo_request',
-      firm_name: formData.firmName,
-      lead_country: selectedCountry.name,
-      lead_country_code: selectedCountry.code,
-      lead_dial_code: selectedCountry.dialCode,
-      lead_city: regionInfo.city || '',
-      lead_timezone: regionInfo.timeZone || '',
-    });
+    const payload = {
+      firmName: formData.firmName.trim(),
+      name: formData.name.trim(),
+      phone: formData.phone.trim(),
+      email: formData.email.trim(),
+      message: formData.message.trim(),
+      country: selectedCountry.name,
+      countryCode: selectedCountry.code,
+      dialCode: selectedCountry.dialCode,
+      city: regionInfo.city || '',
+      timeZone: regionInfo.timeZone || '',
+    };
 
-    setSubmitted(true);
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || result.success === false) {
+        throw new Error(result.error || 'Failed to send your request. Please try again.');
+      }
+
+      // Trigger Google Analytics Lead Conversion Event for Analytics Dashboard
+      trackEvent('generate_lead', {
+        event_category: 'contact',
+        event_label: 'demo_request',
+        firm_name: payload.firmName,
+        lead_country: payload.country,
+        lead_country_code: payload.countryCode,
+        lead_dial_code: payload.dialCode,
+        lead_city: payload.city,
+        lead_timezone: payload.timeZone,
+      });
+
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Email dispatch error:', err);
+      setErrorMsg(
+        err.message || 'We could not submit your request at this moment. Please try again or email Info@sarvika.co.uk directly.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -235,11 +273,17 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
                   <div className="success-icon-wrap">
                     <IconCheckCircle size={44} color="var(--electric-blue)" />
                   </div>
-                  <h4 className="success-title">Demo Request Received</h4>
+                  <h4 className="success-title">Demo Request Received!</h4>
                   <p className="success-desc">
                     Thank you, <strong>{formData.name}</strong> from <strong>{formData.firmName}</strong>. Our{' '}
-                    <strong>{selectedCountry.name}</strong> practice specialists will contact you at{' '}
-                    <strong>{formData.email}</strong> or <strong>{selectedCountry.dialCode} {formData.phone}</strong> shortly to confirm your walkthrough.
+                    <strong>{selectedCountry.name}</strong> practice specialists have received your inquiry.
+                  </p>
+                  <div className="success-email-badge">
+                    <IconMail size={16} color="var(--electric-blue)" />
+                    <span>A confirmation email has been sent to <strong>{formData.email}</strong></span>
+                  </div>
+                  <p className="success-followup-text">
+                    We will contact you shortly at <strong>{selectedCountry.dialCode} {formData.phone}</strong> to confirm your scheduled walkthrough time.
                   </p>
                   <button
                     type="button"
@@ -489,9 +533,22 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
                     />
                   </div>
 
-                  <button type="submit" className="btn-primary form-submit-btn">
-                    <IconCalendar size={18} />
-                    <span>Request a Demo</span>
+                  <button
+                    type="submit"
+                    className="btn-primary form-submit-btn"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <span className="submit-spinner" aria-hidden="true" />
+                        <span>Sending Demo Request...</span>
+                      </>
+                    ) : (
+                      <>
+                        <IconCalendar size={18} />
+                        <span>Request a Demo</span>
+                      </>
+                    )}
                   </button>
                 </form>
               )}

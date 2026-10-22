@@ -25,3 +25,9 @@ dist-ssr
 
 # Scratch scripts
 scratch/
+
+# Credentials & environment files
+email
+.env
+.env.*
+!.env.example

@@ -6,11 +6,13 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
+    "serve": "node server.js",
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview"
   },
   "dependencies": {
+    "nodemailer": "^10.1.7",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },

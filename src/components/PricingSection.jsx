@@ -25,7 +25,7 @@ export default function PricingSection({ userCountry }) {
         .then((detected) => {
           if (detected) setInternalCountry(detected);
         })
-        .catch(() => {});
+        .catch(() => { });
     }
   }, [userCountry]);
 
