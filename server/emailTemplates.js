@@ -4,7 +4,7 @@
 // =============================================================================
 
 // Official hosted brand logo URL (clean, reliable across all email clients including Gmail without attachments)
-export const EMAIL_LOGO_URL = 'https://iili.io/nOLUsWv.png';
+export const EMAIL_LOGO_URL = 'https://cdn.jsdelivr.net/gh/dhairya3007/sarvika@main/public/logosarvika.png';
 
 /**
  * Generates the Admin Notification Email sent to the SARVIKA sales team (Info@sarvika.co.uk)
@@ -52,7 +52,7 @@ export function generateAdminNotificationEmail({
               <table width="100%" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td style="vertical-align: middle;">
-                    <img src="${EMAIL_LOGO_URL}" width="48" height="48" alt="SARVIKA Logo" style="display: block; border-radius: 10px; width: 48px; height: 48px; border: 0; outline: none;" />
+                    <img src="${EMAIL_LOGO_URL}" width="190" height="26" alt="SARVIKA Logo" style="display: block; width: 190px; height: auto; max-height: 28px; border: 0; outline: none;" />
                   </td>
                   <td align="right" style="vertical-align: middle;">
                     <div style="display: inline-block; background-color: #eff6ff; border: 1px solid #bfdbfe; color: #0284c7; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 6px 14px; border-radius: 20px;">
@@ -198,7 +198,7 @@ export function generateClientConfirmationEmail({ firmName, name, phone, email, 
               <table width="100%" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td style="vertical-align: middle;">
-                    <img src="${EMAIL_LOGO_URL}" width="48" height="48" alt="SARVIKA Logo" style="display: block; border-radius: 10px; width: 48px; height: 48px; border: 0; outline: none;" />
+                    <img src="${EMAIL_LOGO_URL}" width="190" height="26" alt="SARVIKA Logo" style="display: block; width: 190px; height: auto; max-height: 28px; border: 0; outline: none;" />
                   </td>
                   <td align="right" style="vertical-align: middle;">
                     <div style="display: inline-block; background-color: #eff6ff; border: 1px solid #bfdbfe; color: #0284c7; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 6px 14px; border-radius: 20px;">
