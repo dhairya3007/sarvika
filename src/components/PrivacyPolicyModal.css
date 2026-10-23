@@ -184,6 +184,24 @@
   color: #0284c7;
 }
 
+.policy-link-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: #0b8fdd;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.policy-link-btn:hover {
+  color: #0284c7;
+}
+
 .policy-intro {
   font-size: 0.95rem;
   color: #1e293b;

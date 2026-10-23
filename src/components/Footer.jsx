@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { IconArrowRight, IconInstagram, IconChevronDown } from './Icons';
 import PrivacyPolicyModal from './PrivacyPolicyModal';
+import CookiesPolicyModal from './CookiesPolicyModal';
 import './Footer.css';
 
 export default function Footer({ logoUrl = '/logosarvika.png' }) {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [isPolicyOpen, setIsPolicyOpen] = useState(false);
+  const [isCookiesOpen, setIsCookiesOpen] = useState(false);
 
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -61,6 +63,15 @@ export default function Footer({ logoUrl = '/logosarvika.png' }) {
                   Privacy Policy
                 </button>
               </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => setIsCookiesOpen(true)}
+                  className="footer-nav-link footer-policy-link-btn"
+                >
+                  Cookies Policy
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -99,6 +110,14 @@ export default function Footer({ logoUrl = '/logosarvika.png' }) {
             >
               Privacy Policy
             </button>
+            <span className="footer-divider-dot">&bull;</span>
+            <button
+              type="button"
+              className="footer-bottom-policy-btn"
+              onClick={() => setIsCookiesOpen(true)}
+            >
+              Cookies Policy
+            </button>
           </div>
 
           <button
@@ -119,6 +138,13 @@ export default function Footer({ logoUrl = '/logosarvika.png' }) {
       <PrivacyPolicyModal
         isOpen={isPolicyOpen}
         onClose={() => setIsPolicyOpen(false)}
+      />
+
+      {/* Cookies Policy Modal */}
+      <CookiesPolicyModal
+        isOpen={isCookiesOpen}
+        onClose={() => setIsCookiesOpen(false)}
+        onOpenPrivacyPolicy={() => setIsPolicyOpen(true)}
       />
     </footer>
   );
