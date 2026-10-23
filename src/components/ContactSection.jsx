@@ -154,10 +154,22 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
         });
       }
 
-      const result = await response.json().catch(() => ({}));
+      let rawText = '';
+      let result = null;
+      try {
+        rawText = await response.text();
+        result = JSON.parse(rawText);
+      } catch (parseErr) {
+        result = null;
+      }
 
-      if (!response.ok || result.success === false) {
-        throw new Error(result.error || 'Failed to send your request. Please try again.');
+      if (!response.ok || !result || result.success === false) {
+        let errorDetail = result?.error;
+        if (!errorDetail && rawText) {
+          const stripped = rawText.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
+          errorDetail = stripped.slice(0, 180);
+        }
+        throw new Error(`Server returned HTTP ${response.status} (${response.statusText || 'Error'}): ${errorDetail || 'No error details provided'}`);
       }
 
       // Trigger Google Analytics Lead Conversion Event for Analytics Dashboard
@@ -175,9 +187,7 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
       setSubmitted(true);
     } catch (err) {
       console.error('Email dispatch error:', err);
-      setErrorMsg(
-        err.message || 'We could not submit your request at this moment. Please try again or email Info@sarvika.co.uk directly.'
-      );
+      setErrorMsg(`⚠️ Error: ${err.message || 'Could not reach server. Please email Info@sarvika.co.uk directly.'}`);
     } finally {
       setIsSubmitting(false);
     }
