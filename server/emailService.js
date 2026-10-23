@@ -12,6 +12,9 @@ import {
 
 export function getTransporter() {
   const auth = EMAIL_CONFIG.auth;
+  if (!auth.user || !auth.pass) {
+    throw new Error('SMTP credentials are not configured. Please add SMTP_USERNAME and SMTP_PASSWORD to your hosting Environment Variables (e.g. Netlify Dashboard).');
+  }
   return nodemailer.createTransport({
     host: EMAIL_CONFIG.host,
     port: EMAIL_CONFIG.port,
