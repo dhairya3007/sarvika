@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { IconArrowRight, IconInstagram, IconChevronDown } from './Icons';
+import PrivacyPolicyModal from './PrivacyPolicyModal';
 import './Footer.css';
 
 export default function Footer({ logoUrl = '/logosarvika.png' }) {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [isPolicyOpen, setIsPolicyOpen] = useState(false);
 
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -50,6 +52,15 @@ export default function Footer({ logoUrl = '/logosarvika.png' }) {
               <li><a href="#pricing" className="footer-nav-link">Pricing</a></li>
               <li><a href="#faq" className="footer-nav-link">FAQ</a></li>
               <li><a href="#contact" className="footer-nav-link">Contact</a></li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => setIsPolicyOpen(true)}
+                  className="footer-nav-link footer-policy-link-btn"
+                >
+                  Privacy Policy
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -76,9 +87,19 @@ export default function Footer({ logoUrl = '/logosarvika.png' }) {
 
         {/* Footer Bottom / Copyright */}
         <div className="footer-bottom-row">
-          <p className="copyright-text">
-            &copy; 2026 ALL RIGHTS RESERVED.
-          </p>
+          <div className="footer-bottom-left">
+            <p className="copyright-text">
+              &copy; 2026 ALL RIGHTS RESERVED.
+            </p>
+            <span className="footer-divider-dot">&bull;</span>
+            <button
+              type="button"
+              className="footer-bottom-policy-btn"
+              onClick={() => setIsPolicyOpen(true)}
+            >
+              Privacy Policy
+            </button>
+          </div>
 
           <button
             type="button"
@@ -93,6 +114,12 @@ export default function Footer({ logoUrl = '/logosarvika.png' }) {
           </button>
         </div>
       </div>
+
+      {/* Privacy Policy Modal */}
+      <PrivacyPolicyModal
+        isOpen={isPolicyOpen}
+        onClose={() => setIsPolicyOpen(false)}
+      />
     </footer>
   );
 }

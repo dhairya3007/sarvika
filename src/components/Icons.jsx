@@ -878,5 +878,9 @@ export const CountryFlag = ({ code = 'GB', width = 20, height = 14, className = 
   }
 };
 
-
-
+export const IconX = ({ size = 20, color = 'currentColor', className = '' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+  </svg>
+);
