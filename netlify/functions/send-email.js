@@ -1,6 +1,6 @@
 // =============================================================================
 // Netlify Serverless Function: POST /api/send-email
-// Dual-mode compatibility (v1 handler & v2 export) to eliminate 502 Bad Gateway
+// Universal handler: handles both Netlify v1 (event) and v2 (Web Request)
 // =============================================================================
 
 import { sendDemoInquiryEmail } from '../../server/emailService.js';
@@ -12,9 +12,33 @@ const corsHeaders = {
   'Content-Type': 'application/json',
 };
 
-// 1. Classic Netlify Lambda Handler (v1) - Guaranteed 100% compatible with Netlify rewrites
-export async function handler(event, context) {
-  // CORS Preflight
+export async function handler(eventOrReq, context) {
+  // 1. Check if invoked as Netlify Functions v2 (Web Request)
+  if (eventOrReq && typeof eventOrReq.json === 'function') {
+    if (eventOrReq.method === 'OPTIONS') {
+      return new Response(JSON.stringify({ status: 'ok' }), { status: 200, headers: corsHeaders });
+    }
+    if (eventOrReq.method !== 'POST') {
+      return new Response(JSON.stringify({ success: false, error: 'Method not allowed' }), { status: 405, headers: corsHeaders });
+    }
+    try {
+      const payload = await eventOrReq.json().catch(() => ({}));
+      if (!payload || !payload.name) {
+        return new Response(JSON.stringify({ success: false, error: 'Name is required' }), { status: 400, headers: corsHeaders });
+      }
+      const result = await sendDemoInquiryEmail(payload);
+      return new Response(JSON.stringify(result), { status: 200, headers: corsHeaders });
+    } catch (err) {
+      console.error('[Netlify Function send-email v2] Error:', err);
+      return new Response(JSON.stringify({ success: false, error: err.message || 'Failed to dispatch email' }), {
+        status: 500,
+        headers: corsHeaders,
+      });
+    }
+  }
+
+  // 2. Otherwise invoked as Netlify Lambda v1 (event object with httpMethod, body)
+  const event = eventOrReq || {};
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,
@@ -23,7 +47,6 @@ export async function handler(event, context) {
     };
   }
 
-  // Only POST
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
@@ -56,7 +79,7 @@ export async function handler(event, context) {
       body: JSON.stringify(result),
     };
   } catch (err) {
-    console.error('[Netlify Function send-email] Error:', err);
+    console.error('[Netlify Function send-email v1] Error:', err);
     return {
       statusCode: 500,
       headers: corsHeaders,
@@ -68,29 +91,4 @@ export async function handler(event, context) {
   }
 }
 
-// 2. Netlify Functions v2 Default Export Fallback
-export default async (req, context) => {
-  if (req && typeof req.json === 'function') {
-    if (req.method === 'OPTIONS') {
-      return new Response(JSON.stringify({ status: 'ok' }), { status: 200, headers: corsHeaders });
-    }
-    if (req.method !== 'POST') {
-      return new Response(JSON.stringify({ success: false, error: 'Method not allowed' }), { status: 405, headers: corsHeaders });
-    }
-    try {
-      const payload = await req.json().catch(() => ({}));
-      if (!payload || !payload.name) {
-        return new Response(JSON.stringify({ success: false, error: 'Name is required' }), { status: 400, headers: corsHeaders });
-      }
-      const result = await sendDemoInquiryEmail(payload);
-      return new Response(JSON.stringify(result), { status: 200, headers: corsHeaders });
-    } catch (err) {
-      return new Response(JSON.stringify({ success: false, error: err.message || 'Failed to dispatch email' }), {
-        status: 500,
-        headers: corsHeaders,
-      });
-    }
-  }
-
-  return handler(req, context);
-};
+export default handler;
