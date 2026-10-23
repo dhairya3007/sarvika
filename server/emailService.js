@@ -49,7 +49,13 @@ export function getTransporter() {
  * Sends both the team notification email and client confirmation email
  * 100% attachment-free: NO files or PDF chips will ever be attached to the email.
  */
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
 export async function sendDemoInquiryEmail(leadData) {
+  if (!leadData || !leadData.email || !EMAIL_REGEX.test(String(leadData.email).trim())) {
+    throw new Error('Please enter a valid email address.');
+  }
+
   const mailer = getTransporter();
   const timestamp = new Date().toISOString();
   const payload = { ...leadData, timestamp };

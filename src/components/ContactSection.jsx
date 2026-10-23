@@ -4,6 +4,8 @@ import { COUNTRIES, CORE_MARKETS_COUNT, detectVisitorRegion } from '../utils/geo
 import { trackEvent } from '../utils/analytics';
 import './ContactSection.css';
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
 export default function ContactSection({ selectedCountry: propCountry, onSelectCountry }) {
   const [formData, setFormData] = useState({
     firmName: '',
@@ -22,6 +24,7 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
   const [regionInfo, setRegionInfo] = useState({ name: 'United Kingdom', code: 'GB', city: '', timeZone: '' });
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [emailError, setEmailError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Country selector dropdown & scroller state
@@ -31,6 +34,7 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
   const searchInputRef = useRef(null);
   const selectedItemRef = useRef(null);
   const phoneInputRef = useRef(null);
+  const emailInputRef = useRef(null);
 
   const closeDropdown = () => {
     setIsCountryDropdownOpen(false);
@@ -118,7 +122,18 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
       setErrorMsg('Please complete all required fields.');
       return;
     }
+
+    if (!EMAIL_REGEX.test(formData.email.trim())) {
+      setErrorMsg('Please enter a valid email address (e.g. name@firm.com).');
+      setEmailError('Please enter a valid email address.');
+      if (emailInputRef.current) {
+        emailInputRef.current.focus();
+      }
+      return;
+    }
+
     setErrorMsg('');
+    setEmailError('');
     setIsSubmitting(true);
 
     const payload = {
@@ -164,12 +179,11 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
       }
 
       if (!response.ok || !result || result.success === false) {
-        let errorDetail = result?.error;
-        if (!errorDetail && rawText) {
-          const stripped = rawText.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
-          errorDetail = stripped.slice(0, 180);
+        const errorDetail = result?.error;
+        if (typeof errorDetail === 'string' && errorDetail.length < 120 && !errorDetail.includes('{') && !errorDetail.includes('500') && !errorDetail.includes('502')) {
+          throw new Error(errorDetail);
         }
-        throw new Error(`Server returned HTTP ${response.status} (${response.statusText || 'Error'}): ${errorDetail || 'No error details provided'}`);
+        throw new Error('Unable to send your request right now. Please try again or email us directly at Info@sarvika.co.uk.');
       }
 
       // Trigger Google Analytics Lead Conversion Event for Analytics Dashboard
@@ -187,7 +201,7 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
       setSubmitted(true);
     } catch (err) {
       console.error('Email dispatch error:', err);
-      setErrorMsg(`⚠️ Error: ${err.message || 'Could not reach server. Please email Info@sarvika.co.uk directly.'}`);
+      setErrorMsg(err.message || 'Unable to send your request. Please try again or email Info@sarvika.co.uk directly.');
     } finally {
       setIsSubmitting(false);
     }
@@ -312,6 +326,8 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
                     onClick={() => {
                       setSubmitted(false);
                       setFormData({ firmName: '', name: '', phone: '', email: '', message: '' });
+                      setErrorMsg('');
+                      setEmailError('');
                     }}
                   >
                     Submit Another Request
@@ -528,15 +544,32 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
                       Email Address <span className="req-star">*</span>
                     </label>
                     <input
+                      ref={emailInputRef}
                       type="email"
                       id="email"
                       name="email"
-                      className="form-input"
+                      className={`form-input ${emailError ? 'has-error' : ''}`}
                       placeholder="Enter your email address"
                       value={formData.email}
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        handleChange(e);
+                        if (emailError) setEmailError('');
+                        if (errorMsg) setErrorMsg('');
+                      }}
+                      onBlur={() => {
+                        if (formData.email.trim() && !EMAIL_REGEX.test(formData.email.trim())) {
+                          setEmailError('Please enter a valid email address (e.g. name@firm.com).');
+                        } else {
+                          setEmailError('');
+                        }
+                      }}
                       required
                     />
+                    {emailError && (
+                      <span className="form-field-error-text" role="alert">
+                        {emailError}
+                      </span>
+                    )}
                   </div>
 
                   <div className="form-group">

@@ -50,9 +50,15 @@ const server = http.createServer(async (req, res) => {
         const payload = JSON.parse(body || '{}');
 
         // Fast payload validation
+        const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
         if (!payload || !payload.name) {
           res.writeHead(400, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ success: false, error: 'Name is required' }));
+          return;
+        }
+        if (!payload.email || !EMAIL_REGEX.test(String(payload.email).trim())) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ success: false, error: 'Please enter a valid email address.' }));
           return;
         }
 

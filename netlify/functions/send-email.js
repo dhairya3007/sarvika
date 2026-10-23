@@ -12,6 +12,8 @@ const corsHeaders = {
   'Content-Type': 'application/json',
 };
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
 export async function handler(eventOrReq, context) {
   // 1. Check if invoked as Netlify Functions v2 (Web Request)
   if (eventOrReq && typeof eventOrReq.json === 'function') {
@@ -25,6 +27,9 @@ export async function handler(eventOrReq, context) {
       const payload = await eventOrReq.json().catch(() => ({}));
       if (!payload || !payload.name) {
         return new Response(JSON.stringify({ success: false, error: 'Name is required' }), { status: 400, headers: corsHeaders });
+      }
+      if (!payload.email || !EMAIL_REGEX.test(String(payload.email).trim())) {
+        return new Response(JSON.stringify({ success: false, error: 'Please enter a valid email address.' }), { status: 400, headers: corsHeaders });
       }
       const result = await sendDemoInquiryEmail(payload);
       return new Response(JSON.stringify(result), { status: 200, headers: corsHeaders });
@@ -68,6 +73,14 @@ export async function handler(eventOrReq, context) {
         statusCode: 400,
         headers: corsHeaders,
         body: JSON.stringify({ success: false, error: 'Name is required' }),
+      };
+    }
+
+    if (!payload.email || !EMAIL_REGEX.test(String(payload.email).trim())) {
+      return {
+        statusCode: 400,
+        headers: corsHeaders,
+        body: JSON.stringify({ success: false, error: 'Please enter a valid email address.' }),
       };
     }
 
