@@ -309,23 +309,52 @@
 
 /* Responsive adjustments */
 @media (max-width: 640px) {
+  .policy-modal-overlay {
+    padding: 10px;
+  }
   .policy-modal-card {
-    max-height: 92vh;
+    max-height: 94vh;
     border-radius: 14px;
   }
   .policy-modal-header {
-    padding: 18px 20px;
+    padding: 16px 18px;
   }
   .policy-modal-body {
-    padding: 20px;
+    padding: 18px;
+    font-size: 0.9rem;
+    -webkit-overflow-scrolling: touch;
   }
   .policy-meta-label {
     min-width: 100%;
   }
   .policy-modal-footer {
-    padding: 14px 20px;
+    padding: 12px 18px;
+  }
+  .policy-close-btn {
+    width: 100%;
+    text-align: center;
   }
   .policy-modal-title {
     font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .policy-modal-overlay {
+    padding: 6px;
+  }
+  .policy-modal-card {
+    max-height: 96vh;
+    border-radius: 12px;
+  }
+  .policy-modal-header {
+    padding: 14px 14px;
+  }
+  .policy-modal-body {
+    padding: 14px;
+    font-size: 0.86rem;
+  }
+  .policy-modal-title {
+    font-size: 1.15rem;
   }
 }
