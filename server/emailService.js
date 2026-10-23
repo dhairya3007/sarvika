@@ -64,7 +64,7 @@ export async function sendDemoInquiryEmail(leadData) {
   const clientHtml = generateClientConfirmationEmail(payload);
 
   const fullPhone = `${payload.dialCode || ''} ${payload.phone}`.trim();
-  const senderName = 'SARVIKA™ Practice Management';
+  const senderName = EMAIL_CONFIG.fromName || 'Sarvika License Service';
 
   // 1. Prepare Admin Notification Options (Zero attachments)
   const adminMailOptions = {

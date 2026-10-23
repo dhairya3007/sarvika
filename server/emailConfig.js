@@ -38,7 +38,7 @@ function loadLocalSettings() {
     if (fs.existsSync(emailFilePath)) {
       const raw = fs.readFileSync(emailFilePath, 'utf-8');
       const parsed = JSON.parse(raw);
-      localSettings = parsed.EmailSettings || {};
+      localSettings = parsed.Email || parsed.EmailSettings || {};
     }
   } catch {
     // Silent fallback to env vars
@@ -50,28 +50,34 @@ function loadLocalSettings() {
 export const EMAIL_CONFIG = {
   get host() {
     const local = loadLocalSettings();
-    return process.env.SMTP_SERVER || local.SmtpServer || 'smtp.gmail.com';
+    return process.env.SMTP_SERVER || local.Host || local.SmtpServer || 'smtp.gmail.com';
   },
   get port() {
     const local = loadLocalSettings();
-    return Number(process.env.SMTP_PORT || local.Port || 465);
+    return Number(process.env.SMTP_PORT || local.Port || 587);
   },
   get secure() {
-    return true;
+    const local = loadLocalSettings();
+    const port = Number(process.env.SMTP_PORT || local.Port || 587);
+    return port === 465;
   },
   get auth() {
     const local = loadLocalSettings();
     return {
-      user: process.env.SMTP_USERNAME || local.Username || '',
+      user: process.env.SMTP_USERNAME || local.Username || 'info@sarvika.co.uk',
       pass: process.env.SMTP_PASSWORD || local.Password || '',
     };
   },
   get from() {
     const local = loadLocalSettings();
-    return process.env.EMAIL_FROM || local.From || process.env.SMTP_USERNAME || local.Username || 'Info2zamir@gmail.com';
+    return process.env.EMAIL_FROM || local.FromAddress || local.From || process.env.SMTP_USERNAME || local.Username || 'info@sarvika.co.uk';
+  },
+  get fromName() {
+    const local = loadLocalSettings();
+    return process.env.EMAIL_FROM_NAME || local.FromName || 'Sarvika License Service';
   },
   get to() {
     const local = loadLocalSettings();
-    return process.env.EMAIL_TO || local.To || 'Info@sarvika.co.uk';
+    return process.env.EMAIL_TO || local.To || 'info@sarvika.co.uk';
   },
 };
