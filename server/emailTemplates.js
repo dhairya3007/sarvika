@@ -58,7 +58,7 @@ export function generateAdminNotificationEmail({
                   </td>
                   <td align="right" style="vertical-align: middle;">
                     <div style="display: inline-block; background-color: #eff6ff; border: 1px solid #bfdbfe; color: #0284c7; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 6px 14px; border-radius: 20px;">
-                      ⚡ NEW LEAD
+                      NEW
                     </div>
                   </td>
                 </tr>
