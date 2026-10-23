@@ -5,8 +5,8 @@
 // ==========================================================================
 
 // Replace with your Google Analytics 4 Measurement ID (e.g. G-ABC123XYZ)
-// You can either paste your ID directly here or add VITE_GA_MEASUREMENT_ID to your .env file
-export const GA_MEASUREMENT_ID = import.meta.env?.VITE_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX';
+// Google Analytics 4 Measurement ID
+export const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-V0D0GLSNFK';
 
 /**
  * Initializes Google Analytics 4 gtag.js script dynamically
