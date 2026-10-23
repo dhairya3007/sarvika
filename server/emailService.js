@@ -10,24 +10,17 @@ import {
   generateClientConfirmationEmail,
 } from './emailTemplates.js';
 
-let transporter = null;
-
-function getTransporter() {
-  if (!transporter) {
-    transporter = nodemailer.createTransport({
-      pool: true,
-      maxConnections: 5,
-      maxMessages: Infinity,
-      host: EMAIL_CONFIG.host,
-      port: EMAIL_CONFIG.port,
-      secure: EMAIL_CONFIG.secure,
-      auth: {
-        user: EMAIL_CONFIG.auth.user,
-        pass: EMAIL_CONFIG.auth.pass,
-      },
-    });
-  }
-  return transporter;
+export function getTransporter() {
+  const auth = EMAIL_CONFIG.auth;
+  return nodemailer.createTransport({
+    host: EMAIL_CONFIG.host,
+    port: EMAIL_CONFIG.port,
+    secure: EMAIL_CONFIG.secure,
+    auth: {
+      user: auth.user,
+      pass: auth.pass,
+    },
+  });
 }
 
 /**
