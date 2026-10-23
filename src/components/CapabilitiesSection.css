@@ -6,7 +6,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
-  margin-bottom: 28px;
+  margin-bottom: 36px;
 }
 
 .capability-card {
@@ -88,6 +88,6 @@
   .capabilities-grid {
     grid-template-columns: 1fr;
     gap: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 }

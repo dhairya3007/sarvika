@@ -60,30 +60,6 @@ export default function Footer({ logoUrl = '/logosarvika.png' }) {
               Subscribe for the latest SARVIKA updates, productivity insights and smarter ways to manage your business.
             </p>
 
-            {subscribed ? (
-              <div className="newsletter-success">
-                <span>Subscribed! Thank you for staying connected.</span>
-              </div>
-            ) : (
-              <form className="footer-terminal-form" onSubmit={handleSubscribe}>
-                <div className="terminal-bar">
-                  <span className="terminal-prompt">&gt;</span>
-                  <input
-                    type="email"
-                    className="terminal-input"
-                    placeholder="ENTER_EMAIL_ADDR..."
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    aria-label="Newsletter email input"
-                  />
-                  <button type="submit" className="terminal-btn" aria-label="Submit newsletter subscription">
-                    <IconArrowRight size={16} color="var(--pure-white)" />
-                  </button>
-                </div>
-              </form>
-            )}
-
             <div className="footer-social-wrap">
               <a
                 href="https://www.instagram.com/sarvika_25?stkn=aTg1M2N6eXk1dmk5"

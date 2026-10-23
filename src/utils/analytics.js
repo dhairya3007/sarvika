@@ -5,7 +5,8 @@
 // ==========================================================================
 
 // Replace with your Google Analytics 4 Measurement ID (e.g. G-ABC123XYZ)
-export const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+// You can either paste your ID directly here or add VITE_GA_MEASUREMENT_ID to your .env file
+export const GA_MEASUREMENT_ID = import.meta.env?.VITE_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX';
 
 /**
  * Initializes Google Analytics 4 gtag.js script dynamically
@@ -14,6 +15,7 @@ export function initAnalytics(measurementId = GA_MEASUREMENT_ID) {
   if (typeof window === 'undefined') return;
   if (!measurementId || measurementId === 'G-XXXXXXXXXX') {
     // GA Measurement ID placeholder: events will log to console in dev mode
+    console.info('ℹ️ [Analytics]: Add your Google Analytics Measurement ID in src/utils/analytics.js or .env to activate live GA4 tracking.');
     return;
   }
 

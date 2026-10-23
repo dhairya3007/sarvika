@@ -4,7 +4,10 @@ import {
   IconFileText,
   IconUsers,
   IconCheckCircle,
-  IconCalendar
+  IconCalendar,
+  IconShield,
+  IconClock,
+  IconStar
 } from './Icons';
 import './CapabilitiesSection.css';
 
@@ -19,7 +22,6 @@ const CAPABILITIES = [
       'Organise tasks, deadlines & milestones',
       'Complete visibility across your practice',
     ],
-
   },
   {
     id: 'doc-mgmt',
@@ -31,7 +33,6 @@ const CAPABILITIES = [
       'Request & collect digital signatures',
       'Version control & audit trail',
     ],
-
   },
   {
     id: 'team-collab',
@@ -43,7 +44,39 @@ const CAPABILITIES = [
       'Role-based access & permissions',
       'Task assignment & notifications',
     ],
-
+  },
+  {
+    id: 'secure-organised',
+    icon: IconShield,
+    title: 'Secure & Organised',
+    desc: 'Keep all client matters, identity proofs, and case histories compliant and audit-ready.',
+    points: [
+      'GDPR & SRA compliance ready',
+      'Bank-grade 256-bit cloud encryption',
+      'Centralised matter repository & audit trails',
+    ],
+  },
+  {
+    id: 'save-time',
+    icon: IconClock,
+    title: 'Save Valuable Time',
+    desc: 'Automate repetitive casework tasks and eliminate hours spent chasing documents.',
+    points: [
+      'Automated visa expiry & milestone alerts',
+      'One-click client document checklists',
+      'Zero manual status chasing across cases',
+    ],
+  },
+  {
+    id: 'client-exp',
+    icon: IconStar,
+    title: 'Better Client Experience',
+    desc: 'Deliver an effortless, transparent legal experience that builds trust and loyalty.',
+    points: [
+      'Dedicated self-service client portal',
+      'Real-time application status updates',
+      'Seamless digital signature signing',
+    ],
   },
 ];
 
@@ -68,7 +101,7 @@ export default function CapabilitiesSection() {
           </p>
         </div>
 
-        {/* 3 Capabilities Cards */}
+        {/* 6 Capabilities Cards Grid (Directly in the same cards layout) */}
         <div className="capabilities-grid">
           {CAPABILITIES.map((item) => {
             const Icon = item.icon;

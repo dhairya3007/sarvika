@@ -7,7 +7,7 @@
 export const EMAIL_LOGO_URL = 'https://iili.io/nOLUsWv.png';
 
 /**
- * Generates the Admin Notification Email sent to the SARVIKA sales team (dhairyapatel3007@gmail.com)
+ * Generates the Admin Notification Email sent to the SARVIKA sales team (Info@sarvika.co.uk)
  */
 export function generateAdminNotificationEmail({
   firmName,

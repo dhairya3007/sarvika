@@ -262,8 +262,8 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
                   </div>
                   <div className="contact-item-body">
                     <span className="contact-label">Platform Support</span>
-                    <a href="mailto:info@sarvika.co.uk" className="contact-value-link">
-                      Info@sarvika.co.uk
+                    <a href="mailto:support@sarvika.co.uk" className="contact-value-link">
+                      support@sarvika.co.uk
                     </a>
                   </div>
                 </div>
