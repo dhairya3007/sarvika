@@ -1,5 +1,5 @@
 // =============================================================================
-// SARVIKA™ Email Templates
+// SARVIKA Email Templates
 // Responsive, inline-styled email templates for Gmail, Outlook, Apple Mail
 // =============================================================================
 
@@ -31,6 +31,15 @@ export function generateAdminNotificationEmail({
     })
     : new Date().toLocaleString('en-GB', { dateStyle: 'full', timeStyle: 'medium' });
 
+  const callPhone = fullPhone.replace(/\s+/g, '');
+  const phoneRowValue = fullPhone && fullPhone !== 'N/A'
+    ? `<a href="tel:${callPhone}" style="color: #0a2351; text-decoration: none; font-weight: 600;">${fullPhone}</a>`
+    : (fullPhone || 'N/A');
+
+  const callButtonHtml = callPhone && callPhone !== 'N/A'
+    ? `<a href="tel:${callPhone}" style="display: inline-block; background: #0a2351; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; margin: 0 6px 10px 6px;">&#128222; Call ${name.split(' ')[0]}</a>`
+    : '';
+
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -49,15 +58,7 @@ export function generateAdminNotificationEmail({
           <!-- Header Banner (Clean White Background) -->
           <tr>
             <td style="background-color: #ffffff; padding: 24px 32px; text-align: left; border-bottom: 2px solid #edf2f7;">
-              <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                <tr>
-                  <td style="vertical-align: middle;">
-                    <div style="display: inline-block; background-color: #ffffff; padding: 6px 12px; border-radius: 6px;">
-                      <img src="${EMAIL_LOGO_URL}" width="190" height="26" alt="SARVIKA Logo" style="display: block; background-color: #ffffff; width: 190px; height: auto; max-height: 28px; border: 0; outline: none;" />
-                    </div>
-                  </td>
-                </tr>
-              </table>
+              <img src="${EMAIL_LOGO_URL}" width="190" alt="SARVIKA Logo" style="display: block; width: 190px; height: auto; max-height: 28px; border: 0; outline: none;" />
             </td>
           </tr>
 
@@ -101,8 +102,8 @@ export function generateAdminNotificationEmail({
                   <td style="padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13px; font-weight: 600; color: #64748b;">
                     Phone Number
                   </td>
-                  <td style="padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 15px; font-weight: 700; color: #0a2351;">
-                    <a href="tel:${fullPhone.replace(/\s+/g, '')}" style="color: #0a2351; text-decoration: none;">${fullPhone}</a>
+                  <td style="padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 15px; font-weight: 600; color: #1e293b;">
+                    ${phoneRowValue}
                   </td>
                 </tr>
                 <tr>
@@ -118,7 +119,7 @@ export function generateAdminNotificationEmail({
                     Submission Time
                   </td>
                   <td style="padding: 14px 18px; font-size: 13px; color: #64748b;">
-                    ${formattedDate} ${timeZone ? `• ${timeZone}` : ''}
+                    ${formattedDate} ${timeZone ? `&#8226; ${timeZone}` : ''}
                   </td>
                 </tr>
               </table>
@@ -138,11 +139,9 @@ export function generateAdminNotificationEmail({
                 <tr>
                   <td align="center">
                     <a href="mailto:${email}?subject=SARVIKA%20Demo%20Walkthrough%20-%20${encodeURIComponent(firmName || '')}" style="display: inline-block; background: #0b8fdd; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; margin: 0 6px 10px 6px;">
-                      ✉️ Reply via Email
+                      &#9993;&#65039; Reply via Email
                     </a>
-                    <a href="tel:${fullPhone.replace(/\s+/g, '')}" style="display: inline-block; background: #0a2351; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; margin: 0 6px 10px 6px;">
-                      📞 Call ${name.split(' ')[0]}
-                    </a>
+                    ${callButtonHtml}
                   </td>
                 </tr>
               </table>
@@ -154,7 +153,7 @@ export function generateAdminNotificationEmail({
           <tr>
             <td style="background-color: #f8fafc; padding: 20px 32px; border-top: 1px solid #e2e8f0; text-align: center; font-size: 12px; color: #94a3b8;">
               <p style="margin: 0 0 4px 0;">This notification was generated automatically by the SARVIKA Website Contact System.</p>
-              <p style="margin: 0;">© ${new Date().getFullYear()} SARVIKA. All rights reserved.</p>
+              <p style="margin: 0;">&copy; ${new Date().getFullYear()} SARVIKA. All rights reserved.</p>
             </td>
           </tr>
 
@@ -173,6 +172,11 @@ export function generateAdminNotificationEmail({
 export function generateClientConfirmationEmail({ firmName, name, phone, email, dialCode, country }) {
   const fullPhone = `${dialCode || ''} ${phone}`.trim();
   const firstName = name ? name.split(' ')[0] : 'there';
+  const targetRegion = country || 'your region';
+  const callPhone = fullPhone.replace(/\s+/g, '');
+  const phoneNotice = fullPhone && fullPhone !== 'N/A'
+    ? ` or at <strong style="color: #0a2351;"><a href="tel:${callPhone}" style="color: #0b8fdd; text-decoration: none;">${fullPhone}</a></strong>`
+    : '';
 
   return `
 <!DOCTYPE html>
@@ -192,15 +196,7 @@ export function generateClientConfirmationEmail({ firmName, name, phone, email, 
           <!-- Header Banner (Clean White Background) -->
           <tr>
             <td style="background-color: #ffffff; padding: 24px 32px; text-align: left; border-bottom: 2px solid #edf2f7;">
-              <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                <tr>
-                  <td style="vertical-align: middle;">
-                    <div style="display: inline-block; background-color: #ffffff; padding: 6px 12px; border-radius: 6px;">
-                      <img src="${EMAIL_LOGO_URL}" width="190" height="26" alt="SARVIKA Logo" style="display: block; background-color: #ffffff; width: 190px; height: auto; max-height: 28px; border: 0; outline: none;" />
-                    </div>
-                  </td>
-                </tr>
-              </table>
+              <img src="${EMAIL_LOGO_URL}" width="190" alt="SARVIKA Logo" style="display: block; width: 190px; height: auto; max-height: 28px; border: 0; outline: none;" />
             </td>
           </tr>
 
@@ -212,11 +208,11 @@ export function generateClientConfirmationEmail({ firmName, name, phone, email, 
               </h1>
               
               <p style="font-size: 15px; color: #334155; line-height: 1.6; margin: 0 0 18px 0;">
-                We have received your demo request for <strong>${firmName}</strong>.
+                We have received your demo request${firmName && firmName !== 'N/A' ? ` for <strong>${firmName}</strong>` : ''}.
               </p>
 
               <p style="font-size: 15px; color: #334155; line-height: 1.6; margin: 0 0 24px 0;">
-                One of our dedicated practice specialists for <strong>${country || 'your region'}</strong> will contact you shortly via email or at <strong>${fullPhone}</strong> to schedule a live, personalized walkthrough of the SARVIKA platform.
+                One of our dedicated practice specialists for <strong>${targetRegion}</strong> will contact you shortly via email${phoneNotice} to schedule a live, personalized walkthrough of the SARVIKA platform.
               </p>
 
               <p style="font-size: 14px; color: #64748b; line-height: 1.6; margin: 0 0 20px 0;">
@@ -226,6 +222,7 @@ export function generateClientConfirmationEmail({ firmName, name, phone, email, 
               <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; font-size: 14px; color: #334155;">
                 Warm regards,<br>
                 <strong style="color: #0a2351;">The SARVIKA Practice Team</strong><br>
+                <span style="font-size: 13px; color: #64748b;"><a href="https://sarvika.co.uk" style="color: #0b8fdd; text-decoration: none;">https://sarvika.co.uk</a></span>
               </div>
             </td>
           </tr>
@@ -234,7 +231,7 @@ export function generateClientConfirmationEmail({ firmName, name, phone, email, 
           <tr>
             <td style="background-color: #f8fafc; padding: 20px 32px; border-top: 1px solid #e2e8f0; text-align: center; font-size: 12px; color: #94a3b8;">
               <p style="margin: 0 0 4px 0;">You received this email because a demo walkthrough was requested for ${email}.</p>
-              <p style="margin: 0;">© ${new Date().getFullYear()} SARVIKA. All rights reserved.</p>
+              <p style="margin: 0;">&copy; ${new Date().getFullYear()} SARVIKA. All rights reserved.</p>
             </td>
           </tr>
 

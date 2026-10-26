@@ -6,7 +6,8 @@ function emailApiPlugin() {
   const handler = async (req, res, next) => {
     // Only handle /api/send-email
     const url = req.url ? req.url.split('?')[0] : '';
-    if (url !== '/api/send-email') {
+    // Handle both /api/send-email and IIS /api/send-email.ashx
+    if (url !== '/api/send-email' && url !== '/api/send-email.ashx') {
       return next();
     }
 

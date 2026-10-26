@@ -4,26 +4,27 @@
   background-color: rgba(16, 92, 126, 0.96) !important;
   border: 1px solid rgba(255, 255, 255, 0.16) !important;
   box-shadow: 0 12px 32px rgba(10, 35, 81, 0.12);
+  padding: 26px 0 18px !important;
 }
 
 .footer-main-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1.5fr;
-  gap: 48px;
-  padding-bottom: 48px;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 36px;
+  padding-bottom: 22px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .footer-logo-link {
   display: inline-block;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
   text-decoration: none;
 }
 
 .footer-logo-img {
-  height: 38px;
+  height: 36px;
   width: auto;
-  max-width: 220px;
+  max-width: 210px;
   object-fit: contain;
   display: block;
   transition: transform var(--transition-fast);
@@ -34,11 +35,11 @@
 }
 
 .footer-desc {
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   color: rgba(255, 255, 255, 0.88);
-  line-height: 1.6;
+  line-height: 1.5;
   max-width: 440px;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .footer-status-pills {
@@ -76,17 +77,17 @@
 }
 
 .footer-heading {
-  font-size: 0.98rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--pure-white);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   letter-spacing: -0.01em;
 }
 
 .footer-nav-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .footer-nav-link {
@@ -95,6 +96,12 @@
   font-weight: 500;
   transition: all var(--transition-fast);
   text-decoration: none;
+}
+
+.footer-links-split-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(110px, 1fr));
+  gap: 20px;
 }
 
 .footer-nav-link:hover {
@@ -202,6 +209,13 @@
   text-decoration: none;
 }
 
+.footer-social-btn-pill {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
 .footer-social-btn svg {
   display: block;
   stroke: #105c7e;
@@ -225,7 +239,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 28px;
+  padding-top: 16px;
 }
 
 .footer-bottom-left {
@@ -327,5 +341,10 @@
     flex-direction: column;
     gap: 16px;
     align-items: flex-start;
+  }
+
+  .footer-links-split-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
   }
 }

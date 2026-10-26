@@ -40,58 +40,53 @@ export default function Footer({ logoUrl = '/logosarvika.png' }) {
                 <span className="status-dot" />
                 <span>SMART WORKFLOWS. BETTER RESULTS.</span>
               </span>
-            </div>
-          </div>
-
-          {/* Quick Links Column */}
-          <div className="footer-links-col">
-            <h4 className="footer-heading">SARVIKA Intelligence</h4>
-            <ul className="footer-nav-list">
-              <li><a href="#hero" className="footer-nav-link">Home</a></li>
-              <li><a href="#about" className="footer-nav-link">About Us</a></li>
-              <li><a href="#platform" className="footer-nav-link">Practice Platform</a></li>
-              <li><a href="#capabilities" className="footer-nav-link">Core Capabilities</a></li>
-              <li><a href="#pricing" className="footer-nav-link">Pricing</a></li>
-              <li><a href="#faq" className="footer-nav-link">FAQ</a></li>
-              <li><a href="#contact" className="footer-nav-link">Contact</a></li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => setIsPolicyOpen(true)}
-                  className="footer-nav-link footer-policy-link-btn"
-                >
-                  Privacy Policy
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => setIsCookiesOpen(true)}
-                  className="footer-nav-link footer-policy-link-btn"
-                >
-                  Cookies Policy
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Newsletter Column */}
-          <div className="footer-newsletter-col">
-            <h4 className="footer-heading">Stay Connected</h4>
-            <p className="newsletter-text">
-              Subscribe for the latest SARVIKA updates, productivity insights and smarter ways to manage your business.
-            </p>
-
-            <div className="footer-social-wrap">
               <a
                 href="https://www.instagram.com/sarvika_25?stkn=aTg1M2N6eXk1dmk5"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="footer-social-btn"
+                className="footer-social-btn footer-social-btn-pill"
                 aria-label="SARVIKA Instagram Profile"
               >
-                <IconInstagram size={20} color="#105c7e" />
+                <IconInstagram size={18} color="#105c7e" />
               </a>
+            </div>
+          </div>
+
+          {/* Quick Links Column (3x3 Grid = 9 items across 3 columns, 0 empty space) */}
+          <div className="footer-links-col">
+            <h4 className="footer-heading">SARVIKA Intelligence</h4>
+            <div className="footer-links-split-grid">
+              <ul className="footer-nav-list">
+                <li><a href="#hero" className="footer-nav-link">Home</a></li>
+                <li><a href="#about" className="footer-nav-link">About Us</a></li>
+                <li><a href="#platform" className="footer-nav-link">Practice Platform</a></li>
+              </ul>
+              <ul className="footer-nav-list">
+                <li><a href="#capabilities" className="footer-nav-link">Core Capabilities</a></li>
+                <li><a href="#pricing" className="footer-nav-link">Pricing</a></li>
+                <li><a href="#faq" className="footer-nav-link">FAQ</a></li>
+              </ul>
+              <ul className="footer-nav-list">
+                <li><a href="#contact" className="footer-nav-link">Contact</a></li>
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => setIsPolicyOpen(true)}
+                    className="footer-nav-link footer-policy-link-btn"
+                  >
+                    Privacy Policy
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => setIsCookiesOpen(true)}
+                    className="footer-nav-link footer-policy-link-btn"
+                  >
+                    Cookies Policy
+                  </button>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

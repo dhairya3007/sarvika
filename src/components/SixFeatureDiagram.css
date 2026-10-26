@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SARVIKA™ SIX-FEATURE CONNECTED DIAGRAM
+   SARVIKA SIX-FEATURE CONNECTED DIAGRAM
    Proportional Geometric Vector Architecture
    Strict 6-Color Palette
    ========================================================================== */
@@ -204,7 +204,7 @@
   transform: scale(1.08);
 }
 
-/* Feature Node Cards — Rounded Pill styling matching real screenshot */
+/* Feature Node Cards - Rounded Pill styling matching real screenshot */
 .node-card-box {
   width: 100%;
   height: 100%;

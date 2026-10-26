@@ -1,5 +1,6 @@
+@charset "UTF-8";
 /* ==========================================================================
-   SARVIKA™ DESIGN SYSTEM
+   SARVIKA DESIGN SYSTEM
    Strict 6-Color Palette:
    --deep-navy:       #0A2351 (Headings, navbar, primary text)
    --electric-blue:   #0B8FDD (Primary buttons, links, active states)
@@ -69,7 +70,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Typography — Scaled and Optimized for Responsive Viewing */
+/* Typography - Scaled and Optimized for Responsive Viewing */
 h1, h2, h3, h4, h5, h6 {
   color: var(--deep-navy);
   font-weight: 700;

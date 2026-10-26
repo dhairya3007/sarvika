@@ -150,7 +150,8 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
     };
 
     try {
-      let response = await fetch('/api/send-email', {
+      // 1. Try Windows IIS native ASP.NET handler first
+      let response = await fetch('/api/send-email.ashx', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -158,9 +159,9 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
         body: JSON.stringify(payload),
       });
 
-      // Netlify function direct endpoint fallback if rewrite hasn't taken effect
-      if (response.status === 404) {
-        response = await fetch('/.netlify/functions/send-email', {
+      // 2. Fallback to /api/send-email (e.g. Vite dev or Node server)
+      if (response.status === 404 || response.status === 405) {
+        response = await fetch('/api/send-email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -168,6 +169,8 @@ export default function ContactSection({ selectedCountry: propCountry, onSelectC
           body: JSON.stringify(payload),
         });
       }
+
+
 
       let rawText = '';
       let result = null;

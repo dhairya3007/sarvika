@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SARVIKA™ PLATFORM SECTION
+   SARVIKA PLATFORM SECTION
    Strict 6-Color Brand Palette Implementation:
    - Deep Navy:       var(--deep-navy)       #0A2351 (Headings, primary text)
    - Electric Blue:   var(--electric-blue)   #0B8FDD (Active states, accents, links)
@@ -31,7 +31,7 @@
   z-index: 1;
 }
 
-/* Base Bento Card — Matching SARVIKA Core Capabilities Design */
+/* Base Bento Card - Matching SARVIKA Core Capabilities Design */
 .bento-card {
   background-color: var(--pure-white) !important;
   border: 1px solid var(--soft-border) !important;

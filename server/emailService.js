@@ -1,5 +1,5 @@
 // =============================================================================
-// SARVIKA™ Email Dispatcher Service
+// SARVIKA Email Dispatcher Service
 // Sends lead notification to admin and branded confirmation to the client
 // =============================================================================
 
@@ -71,7 +71,7 @@ export async function sendDemoInquiryEmail(leadData) {
     from: `"${senderName}" <${EMAIL_CONFIG.from}>`,
     to: EMAIL_CONFIG.to,
     replyTo: payload.email || undefined,
-    subject: `🚀 New Demo Request: ${payload.firmName || 'Practice'} - ${payload.name} (${payload.country || 'Global'})`,
+    subject: `New Demo Request: ${payload.firmName || 'Practice'} - ${payload.name} (${payload.country || 'Global'})`,
     html: adminHtml,
     text: `New SARVIKA Demo Request\n\nFirm: ${payload.firmName}\nName: ${payload.name}\nEmail: ${payload.email}\nPhone: ${fullPhone}\nCountry: ${payload.country}\nCity: ${payload.city || 'N/A'}\nNotes: ${payload.message || 'None'}\n`,
   };
@@ -83,7 +83,7 @@ export async function sendDemoInquiryEmail(leadData) {
       from: `"${senderName}" <${EMAIL_CONFIG.from}>`,
       to: payload.email,
       replyTo: EMAIL_CONFIG.to,
-      subject: `Your SARVIKA Demo Request has been received — ${payload.firmName || payload.name}`,
+      subject: `Your SARVIKA Demo Request has been received - ${payload.firmName || payload.name}`,
       html: clientHtml,
       text: `Hello ${payload.name},\n\nThank you for requesting a demo of the SARVIKA platform for ${payload.firmName}. Our practice specialist for ${payload.country || 'your region'} will contact you shortly to schedule your live walkthrough.\n\nWarm regards,\nThe SARVIKA Team\ninfo@sarvika.co.uk\n`,
     };
