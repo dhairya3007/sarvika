@@ -51,7 +51,6 @@ const CAPABILITIES = [
     title: 'Secure & Organised',
     desc: 'Keep all client matters, identity proofs, and case histories compliant and audit-ready.',
     points: [
-      'GDPR & SRA compliance ready',
       'Bank-grade 256-bit cloud encryption',
       'Centralised matter repository & audit trails',
     ],
